@@ -138,6 +138,22 @@ Request body example:
     DELETE http://localhost:8080/api/v1/addresses/<id>
 --------------------------------------------------------------
 
+### Sentences
+    Get all addresses where a specific doctor works.
+    Get all addresses from a specific department.
+    Get the address from a patient.
+
+    Get all appointments in a facility.
+    Get all doctors working in a facility.
+    Get all patients be treated in a facility.
+
+    Get all doctors from a department.
+    Get all facilities with a specific department.
+    
+    Get all appointments from a specific doctor.
+    Get all appointments from a given timespan.
+    Get all appointments from a specific patient.
+
 
 # Headless - Spring-Application
 Create a headless cms via java and spring framework
