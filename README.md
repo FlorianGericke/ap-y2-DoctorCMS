@@ -138,6 +138,224 @@ Request body example:
     DELETE http://localhost:8080/api/v1/addresses/<id>
 --------------------------------------------------------------
 
+#### DOCTORS URLS
+
+* Returns a json list of doctor objs
+
+GET http://localhost:8080/api/v1/doctors
+
+```json
+Response example:
+
+  [
+    {
+      "ka_id": 420394,
+      "firstName": "fName",
+      "lastName": "lName"
+    },
+  ]
+```
+
+
+--------------------------------------------------------------
+GET http://localhost:8080/api/v1/doctors/<ka_id>
+
+````json
+
+response example:
+
+{
+  "ka_id": 420394,
+  "firstName": "fName",
+  "lastName": "lName"
+}
+````
+
+--------------------------------------------------------------
+    POST http://localhost:8080/api/v1/doctors
+
+```json
+    request body:
+    {
+        "ka_id": 420394,
+        "firstName": "fName",
+        "lastName": "lName"
+    }
+```
+
+
+--------------------------------------------------------------
+
+PUT http://localhost:8080/api/v1/doctors/<ka_id>
+````json
+request body:
+
+    {
+        "ka_id": 420394,
+        "firstName": "fName",
+        "lastName": "lName"
+    }
+````    
+
+
+--------------------------------------------------------------
+    DELETE http://localhost:8080/api/v1/doctors/<ka_id>
+--------------------------------------------------------------
+
+#### Appointments URLS
+
+
+* GET http://localhost:8080/api/v1/appointments
+````json
+response body:
+
+    [
+        {
+            "id": 1,
+            "startTime": <dateTime>,
+            "lastName": <dateTime>,
+            "patient": { <patient obj> }
+            "doctor" { <doctor obj> },
+            "location": {
+                "completeAddress": "",
+                "department": "dep name",
+                "facility": "facility name"
+            }
+        },
+    ]
+````
+--------------------------------------------------------------
+GET http://localhost:8080/api/v1/appointments/<id> -> returns a single department obj
+````json
+{
+  "id": 1,
+  "firstName": "fName",
+  "lastName": "lName",
+  "age": 47,
+  "phone" "",
+  "address": {
+    <address obj>
+  }
+}
+````
+
+--------------------------------------------------------------
+POST http://localhost:8080/api/v1/appointments
+````json
+request body:
+
+    {
+        "id": 1,
+        "firstName": "fName",
+        "lastName": "lName",
+        "age": 47,
+        "phone" "",
+        "address": {
+            <address obj>
+        }
+    }
+````
+
+
+--------------------------------------------------------------
+
+PUT http://localhost:8080/api/v1/appointments/<id>
+```json
+request body:
+{
+  "firstName": "fName",
+  "lastName": "lName",
+  "age": 47,
+  "phone" "",
+  "address": {
+    <address obj>
+  }
+}
+```
+
+--------------------------------------------------------------
+    DELETE http://localhost:8080/api/v1/appointments/<id>
+--------------------------------------------------------------
+
+#### Patients URLs
+
+GET http://localhost:8080/api/v1/patients
+
+* returns a json list of department objs
+
+```json
+Response body:
+
+    [
+        {
+            "insuranceNumber": 1,
+            "firstName": "fName",
+            "lastName": "lName",
+            "age": 47,
+            "phone" "",
+            "address": {
+                <address obj>
+            }
+        },
+    ]
+```
+
+
+--------------------------------------------------------------
+GET http://localhost:8080/api/v1/patients/<insurance-number> -> returns a single department obj
+````json
+{
+  "insuranceNumber": 1,
+  "firstName": "fName",
+  "lastName": "lName",
+  "age": 47,
+  "phone" "",
+  "address": {
+    <address obj>
+  }
+}
+````
+
+--------------------------------------------------------------
+POST http://localhost:8080/api/v1/patients
+
+```json
+Request body:
+
+    {
+        "insuranceNumber": 1,
+        "firstName": "fName",
+        "lastName": "lName",
+        "age": 47,
+        "phone" "",
+        "address": {
+            <address obj>
+        }
+    }
+```
+    
+--------------------------------------------------------------
+
+PUT http://localhost:8080/api/v1/patients/<insurance-number>
+
+```json
+Request body:
+{
+  "firstName": "fName",
+  "lastName": "lName",
+  "age": 47,
+  "phone" "",
+  "address": {
+    <address obj>
+  }
+}
+```
+
+
+--------------------------------------------------------------
+    DELETE http://localhost:8080/api/v1/patients/<insurance-number>
+--------------------------------------------------------------
+
 ### Sentences
     Get all addresses where a specific doctor works.
     Get all addresses from a specific department.
