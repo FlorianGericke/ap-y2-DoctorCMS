@@ -1,4 +1,4 @@
-### DATABASE FOR FACILITIES API ENDPOINTS
+### DATABASE API ENDPOINTS
 
     Base URL
     http://localhost:8080/api/v1/<resource>/<ID>?<ParamKey>=<ParamVal>
@@ -62,11 +62,6 @@ Request body example:
 --------------------------------------------------------------
     DELETE http://localhost:8080/api/v1/facilities/<id>
 --------------------------------------------------------------
-
-### DATABASE FOR ADDRESSES API ENDPOINTS
-
-    Base URL
-    http://localhost:8080/api/v1/<resource>/<ID>?<ParamKey>=<ParamVal>
 
 #### Address URL
 
