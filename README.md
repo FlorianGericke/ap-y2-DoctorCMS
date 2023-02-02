@@ -1,32 +1,34 @@
-### DATABASE FOR FACILITIES API ENDPOINTS###
+### DATABASE FOR FACILITIES API ENDPOINTS
 
-    //base URL
+    Base URL
     http://localhost:8080/api/v1/<resource>/<ID>?<ParamKey>=<ParamVal>
 
 #### Facilities URL
 
-    GET http://localhost:8080/api/v1/facilities -> returns a json list of facility objs
-    
-    
+    Returns a JSON list of facility objects
+    GET http://localhost:8080/api/v1/facilities
+
 ````json
-response body:
+Response body example:
 [
     {
         "id": 123,
         "name": "St. Joseph Krankenhaus"
     },
-  {
-    "id": 124,
-    "name": "Urban Krankenhaus"
-  }
+    {
+        "id": 124,
+        "name": "Urban Krankenhaus"
+    }
 ]
 ````
 
 --------------------------------------------------------------
-    GET http://localhost:8080/api/v1/facilities/<id> -> returns a json of a facility obj
+
+    Returns a JSON of an facility object
+    GET http://localhost:8080/api/v1/facilities/<id>
  
 ````json
-response body:
+Response body example:
 {
     "id": 123,
     "name": "St. Joseph Krankenhaus"
@@ -34,10 +36,11 @@ response body:
 ````
 
 --------------------------------------------------------------
+
     POST http://localhost:8080/api/v1/facilities
 
 ````json
-request body:
+Request body example:
 {
     "id": 123,
     "name": "St. Joseph Krankenhaus"
@@ -49,7 +52,7 @@ request body:
     PUT http://localhost:8080/api/v1/facilities/<id>
 
 ````json
-request body:
+Request body example:
 {
    "id": 123,
    "name": "St. Joseph Krankenhaus"
@@ -62,15 +65,16 @@ request body:
 
 ### DATABASE FOR ADDRESSES API ENDPOINTS
 
-    //base URL
+    Base URL
     http://localhost:8080/api/v1/<resource>/<ID>?<ParamKey>=<ParamVal>
 
 #### Address URL
 
-    GET http://localhost:8080/api/v1/addresses -> returns a json list of address objs
+    Returns a JSON list of address objects
+    GET http://localhost:8080/api/v1/addresses
 
 ````json
-response body:
+Response body example:
 [
     {
         "id": 123143,
@@ -90,10 +94,12 @@ response body:
 ````
 
 --------------------------------------------------------------
-    GET http://localhost:8080/api/v1/addresses/<id> -> returns a json of a address obj
+
+    Returns a JSON of an address object
+    GET http://localhost:8080/api/v1/addresses/<id>
 
 ````json
-response body:
+Response body example:
 {
     "id": 123143,
     "street": "Alexanderstr",
@@ -104,10 +110,11 @@ response body:
 ````
 
 --------------------------------------------------------------
+
     POST http://localhost:8080/api/v1/addresses
 
 ````json
-request body:
+Request body example:
 {
     "id": 123145,
     "street": "Kleistr",
@@ -122,7 +129,7 @@ request body:
     PUT http://localhost:8080/api/v1/addresses/<id>
 
 ````json
-request body:
+Request body example:
 {
     "id": 123143,
     "street": "Mehringdamm",
