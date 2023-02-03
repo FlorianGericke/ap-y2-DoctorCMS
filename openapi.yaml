@@ -532,10 +532,12 @@ components:
           minimum: 1
         startTime:
           type: string
-          description: Datetime string
+          example: "2023-12-02 13:30"
+          description: Datetime string in format "YYYY-MM-DD HH:MM"
         endTime:
           type: string
-          description: Datetime string
+          example: "2023-12-02 13:30"
+          description: Datetime string in format "YYYY-MM-DD HH:MM"
         patient:
           type: object
           items:
