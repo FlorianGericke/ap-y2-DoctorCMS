@@ -140,99 +140,100 @@ Request body example:
 
 #### DOCTORS URLS
 
-* Returns a json list of doctor objs
-
-GET http://localhost:8080/api/v1/doctors
+    Returns a json list of doctor objs
+    GET http://localhost:8080/api/v1/doctors
 
 ```json
-Response example:
-
+Response body example:
   [
     {
-      "ka_id": 420394,
+      "id": 420394,
       "firstName": "fName",
       "lastName": "lName"
     },
   ]
 ```
 
-
 --------------------------------------------------------------
-GET http://localhost:8080/api/v1/doctors/<ka_id>
+
+    Returns a JSON of a doctor object
+    GET http://localhost:8080/api/v1/doctors/<id>
 
 ````json
-
-response example:
-
+Response body example:
 {
-  "ka_id": 420394,
+  "id": 420394,
   "firstName": "fName",
   "lastName": "lName"
 }
 ````
 
 --------------------------------------------------------------
+
     POST http://localhost:8080/api/v1/doctors
 
 ```json
-    request body:
-    {
-        "ka_id": 420394,
-        "firstName": "fName",
-        "lastName": "lName"
-    }
+Request body example:
+{
+    "id": 420394,
+    "firstName": "fName",
+    "lastName": "lName"
+}
 ```
 
-
 --------------------------------------------------------------
 
-PUT http://localhost:8080/api/v1/doctors/<ka_id>
+    PUT http://localhost:8080/api/v1/doctors/<id>
+
 ````json
-request body:
-
-    {
-        "ka_id": 420394,
-        "firstName": "fName",
-        "lastName": "lName"
-    }
-````    
-
+Request body example:
+{
+    "id": 420394,
+    "firstName": "fName",
+    "lastName": "lName"
+}
+````
 
 --------------------------------------------------------------
-    DELETE http://localhost:8080/api/v1/doctors/<ka_id>
+    DELETE http://localhost:8080/api/v1/doctors/<id>
 --------------------------------------------------------------
 
 #### Appointments URLS
 
+    Returns a JSON list of appointment objects
+    GET http://localhost:8080/api/v1/appointments
 
-* GET http://localhost:8080/api/v1/appointments
 ````json
-response body:
-
-    [
-        {
-            "id": 1,
-            "startTime": <dateTime>,
-            "lastName": <dateTime>,
-            "patient": { <patient obj> }
-            "doctor" { <doctor obj> },
-            "location": {
-                "completeAddress": "",
-                "department": "dep name",
-                "facility": "facility name"
-            }
-        },
-    ]
+Response body example:
+[
+    {
+        "id": 1,
+        "startTime": <dateTime>,
+        "lastName": <dateTime>,
+        "patient": { <patient obj> }
+        "doctor" { <doctor obj> },
+        "location": {
+            "completeAddress": "",
+            "department": "dep name",
+            "facility": "facility name"
+        }
+    },
+]
 ````
+
 --------------------------------------------------------------
-GET http://localhost:8080/api/v1/appointments/<id> -> returns a single department obj
+
+    Returns a JSON of a appointment object
+    GET http://localhost:8080/api/v1/appointments/<id>
+
 ````json
+Response body example:
 {
   "id": 1,
   "firstName": "fName",
   "lastName": "lName",
   "age": 47,
-  "phone" "",
+  "phone": "+1234142",
   "address": {
     <address obj>
   }
@@ -240,33 +241,34 @@ GET http://localhost:8080/api/v1/appointments/<id> -> returns a single departmen
 ````
 
 --------------------------------------------------------------
-POST http://localhost:8080/api/v1/appointments
-````json
-request body:
 
+    POST http://localhost:8080/api/v1/appointments
+
+````json
+Request body example:
     {
         "id": 1,
         "firstName": "fName",
         "lastName": "lName",
         "age": 47,
-        "phone" "",
+        "phone": "",
         "address": {
             <address obj>
         }
     }
 ````
 
-
 --------------------------------------------------------------
 
-PUT http://localhost:8080/api/v1/appointments/<id>
+    PUT http://localhost:8080/api/v1/appointments/<id>
+
 ```json
-request body:
+Request body example:
 {
   "firstName": "fName",
   "lastName": "lName",
   "age": 47,
-  "phone" "",
+  "phone": "+13414",
   "address": {
     <address obj>
   }
@@ -279,20 +281,18 @@ request body:
 
 #### Patients URLs
 
-GET http://localhost:8080/api/v1/patients
-
-* returns a json list of department objs
+    Returns a json list of patient objs
+    GET http://localhost:8080/api/v1/patients
 
 ```json
-Response body:
-
+Response body example:
     [
         {
             "insuranceNumber": 1,
             "firstName": "fName",
             "lastName": "lName",
             "age": 47,
-            "phone" "",
+            "phone": "",
             "address": {
                 <address obj>
             }
@@ -300,16 +300,19 @@ Response body:
     ]
 ```
 
-
 --------------------------------------------------------------
-GET http://localhost:8080/api/v1/patients/<insurance-number> -> returns a single department obj
+
+    Returns a JSON of a patient object
+    GET http://localhost:8080/api/v1/patients/<insurance-number>
+
 ````json
+Response body example:
 {
   "insuranceNumber": 1,
   "firstName": "fName",
   "lastName": "lName",
   "age": 47,
-  "phone" "",
+  "phone": "",
   "address": {
     <address obj>
   }
@@ -317,17 +320,17 @@ GET http://localhost:8080/api/v1/patients/<insurance-number> -> returns a single
 ````
 
 --------------------------------------------------------------
-POST http://localhost:8080/api/v1/patients
+
+    POST http://localhost:8080/api/v1/patients
 
 ```json
-Request body:
-
+Request body example:
     {
         "insuranceNumber": 1,
         "firstName": "fName",
         "lastName": "lName",
         "age": 47,
-        "phone" "",
+        "phone": "",
         "address": {
             <address obj>
         }
@@ -336,10 +339,10 @@ Request body:
     
 --------------------------------------------------------------
 
-PUT http://localhost:8080/api/v1/patients/<insurance-number>
+    PUT http://localhost:8080/api/v1/patients/<insurance-number>
 
 ```json
-Request body:
+Request body example:
 {
   "firstName": "fName",
   "lastName": "lName",
@@ -350,7 +353,6 @@ Request body:
   }
 }
 ```
-
 
 --------------------------------------------------------------
     DELETE http://localhost:8080/api/v1/patients/<insurance-number>
@@ -408,4 +410,3 @@ Watch this videos to understand, how is going on with spring and REST
 ## BONUS:
 - [ ] Use Unit-Test to test your Application (https://youtu.be/Geq60OVyBPg or https://www.youtube.com/watch?v=z6gOPonp2t0)
 - [ ] Security for REST - API (https://www.youtube.com/watch?v=TOox3CGarf8)
-
