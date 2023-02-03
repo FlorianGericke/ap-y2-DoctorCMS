@@ -3,7 +3,7 @@
     Base URL
     http://localhost:8080/api/v1/<resource>/<ID>?<ParamKey>=<ParamVal>
 
-#### Facilities URLS
+#### FACILITIES URLS
 
     Returns a JSON list of facility objects
     GET http://localhost:8080/api/v1/facilities
@@ -61,7 +61,7 @@ Request body example:
     DELETE http://localhost:8080/api/v1/facilities/<id>
 --------------------------------------------------------------
 
-#### Address URLS
+#### ADDRESSES URLS
 
     Returns a JSON list of address objects
     GET http://localhost:8080/api/v1/addresses
