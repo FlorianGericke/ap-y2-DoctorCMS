@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: DoctorAPI
+  description: An API for doctors, which helps them manage their appointment and patient data
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/api/v1/'
+paths:
+  /facilities:
+    get:
+      summary: Returns a list of facilities
+      responses:
+        '200':
+          description: A JSON array of facility objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Facility'
+    post:
+      summary: Creates a facility
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+
+      responses:
+        '201':
+          description: Created
+        default:
+          description: Unexpected error
+
+
+  /facilities/{id}:
+    get:
+      summary: Returns a facility by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of a facility
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: A facility object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facility'
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A facility with the specified ID was not found.
+        default:
+            description: Unexpected error
+
+    put:
+      summary: Updates a facility name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Updated
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: Deletes a facility
+      responses:
+        '200':
+          description: Confirms facility deletion
+
+components:
+  schemas:
+    Facility:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 3
+          minimum: 1
+        name:
+          type: string
+          example: St. Joseph Krankenhaus
+      required:
+        - name
+
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 20
+          minimum: 1
+        street:
+          type: string
+          example: "Alexanderstr"
+        houseNumber:
+          type: string
+          example: "13A"
+        zip:
+          type: integer
+          example: 12314
+
+    Doctor:
+      type: object
+      properties:
+        kaID:
+          type: integer
+          example: 420394
+        firstName:
+          type: string
+          example: "Ben"
+        lastName:
+          type: string
+          example: "Butter"
+
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+          minimum: 1
+        firstName:
+          type: string
+          example: "Bill"
+          description: Patient's first name
+        lastName:
+          type: string
+          example: "Pack"
+          description: Patient's last name
+        age:
+          type: integer
+          example: 47
+          description: Patient's age
+        address:
+          type: object
+          items:
+            $ref: '#/components/schemas/Address'
+
+    Department:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 3
+          minimum: 1
+        name:
+          type: string
+          example: Orthopädie
+      required:
+        - name
+
+    Patient:
+      type: object
+      properties:
+        insuranceNumber:
+          type: string
+          example: A239402
+        firstName:
+          type: string
+          example: "Bill"
+          description: Patient's first name
+        lastName:
+          type: string
+          example: "Pack"
+          description: Patient's last name
+        age:
+          type: integer
+          example: 47
+          description: Patient's age
+        phone:
+          type: string
+          example: "01-23409-0"
+        address:
+          type: object
+          items:
+            $ref: '#/components/schemas/Address'
+
+
+
+
+
+
+
+  
