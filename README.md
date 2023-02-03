@@ -1,4 +1,38 @@
-### DATABASE API ENDPOINTS
+# Doctors Management System (DMS)
+
+### Table of Content
+* [Installation](#Installation)
+* [Requirements](#Requirements)
+* [How to start the application](#Usage)
+* [API Endpoints](#API)
+* [Sentences](#Sentences)
+* [Assignment description](#Assignment)
+
+# Installation
+The application can be started with an IDE (like IntelliJ IDEA) and the locally installed MySQL DBS
+
+# Requirements
+* IntelliJ IDEA (or an IDE of your choice)
+* MySQL - with a database named "dms"
+    * Instructions on how to install MySQL on Mac with brew: [Link](https://flaviocopes.com/mysql-how-to-install/)
+
+# Usage
+1. Clone the Project into your IDE/IntelliJ
+2. Set up the database credentials for your MySQL service
+    1. In your IDE open the Project folder and open the [application.properties](src/main/resources/application.properties):
+        1. Replace:
+            * ${SQL_USER} with your MySQL username (usually: root)
+            * ${SQL_PASSWORD} with your MySQL password
+              `
+              spring.datasource.username=${SQL_USER} -> your MySQL username
+              spring.datasource.password=${SQL_PASSWORD} -> your MySQL password
+              `
+
+3. Start the MySQL server in a terminal (if not already running)
+    * (`mysql.server start`)
+4. Start the Application from the [*DoctorsApiApplication*](src/main/java/com/endava/doctorsapi/DoctorsApiApplication.java)
+
+# API
 
     Base URL
     http://localhost:8080/api/v1/<resource>/<ID>?<ParamKey>=<ParamVal>
@@ -369,7 +403,7 @@ Request body example:
     DELETE http://localhost:8080/api/v1/patients/<insurance-number>
 --------------------------------------------------------------
 
-### Sentences
+# Sentences
     Get all addresses where a specific doctor works.
     Get all addresses from a specific department.
     Get the address from a patient.
@@ -386,7 +420,8 @@ Request body example:
     Get all appointments from a specific patient.
 
 
-# Headless - Spring-Application
+# Assignment
+## Headless - Spring-Application
 Create a headless cms via java and spring framework
 
 
