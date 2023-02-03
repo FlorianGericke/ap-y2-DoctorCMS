@@ -400,6 +400,84 @@ paths:
         '200':
           description: Confirms patient's deletion
 
+ #PATHS FOR DEPARTMENT
+  /departments:
+    get:
+      summary: Returns a list of departments
+      responses:
+        '200':
+          description: A JSON array of department objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+    post:
+      summary: Creates a department
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+
+      responses:
+        '201':
+          description: Created
+        default:
+          description: Unexpected error
+
+
+  /departments/{id}:
+    get:
+      summary: Returns a department by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of a department
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: A department object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A patient with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+    put:
+      summary: Updates the name of a department
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Updated
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: Deletes a department
+      responses:
+        '200':
+          description: Confirms department's deletion
+
 components:
   schemas:
     Facility:
