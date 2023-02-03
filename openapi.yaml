@@ -6,6 +6,7 @@ info:
 servers:
   - url: 'http://localhost:8080/api/v1/'
 paths:
+  #PATHS FOR FACILITIES
   /facilities:
     get:
       summary: Returns a list of facilities
@@ -83,6 +84,322 @@ paths:
         '200':
           description: Confirms facility deletion
 
+  #PATHS FOR ADDRESSES
+  /addresses:
+    get:
+      summary: Returns a list of addresses
+      responses:
+        '200':
+          description: A JSON array of address objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+    post:
+      summary: Creates an address
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+
+      responses:
+        '201':
+          description: Created
+        default:
+          description: Unexpected error
+
+
+  /addresses/{id}:
+    get:
+      summary: Returns an address by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of an address
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: An address object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: An address with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+    put:
+      summary: Updates a address street
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                street:
+                  type: string
+      responses:
+        '200':
+          description: Updated
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: Deletes an address
+      responses:
+        '200':
+          description: Confirms address deletion
+
+  #PATHS FOR DOCTORS
+  /doctors:
+    get:
+      summary: Returns a list of doctors
+      responses:
+        '200':
+          description: A JSON array of doctor objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Doctor'
+    post:
+      summary: Creates a doctor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+
+      responses:
+        '201':
+          description: Created
+        default:
+          description: Unexpected error
+
+
+  /doctors/{id}:
+    get:
+      summary: Returns a doctor by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of a doctor
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: A doctor object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Doctor'
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A facility with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+    put:
+      summary: Updates the name of a doctor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Updated
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: Deletes a doctor
+      responses:
+        '200':
+          description: Confirms doctor's deletion
+
+  #PATHS FOR APPOINTMENTS
+  /appointments:
+    get:
+      summary: Returns a list of appointments
+      responses:
+        '200':
+          description: A JSON array of appointment objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+    post:
+      summary: Creates an appointment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+
+      responses:
+        '201':
+          description: Created
+        default:
+          description: Unexpected error
+
+
+  /appointments/{id}:
+    get:
+      summary: Returns an appointment by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of an appointment
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: An appointment object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: An appointment with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+    put:
+      summary: Updates a appointment time
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startTime:
+                  type: string
+                  description: Datetime
+                endTime:
+                  type: string
+                  description: Datetime
+      responses:
+        '200':
+          description: Updated
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: Deletes an appointment
+      responses:
+        '200':
+          description: Confirms appointment deletion
+
+ #PATHS FOR PATIENTS
+  /patients:
+    get:
+      summary: Returns a list of patients
+      responses:
+        '200':
+          description: A JSON array of patient objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Patient'
+    post:
+      summary: Creates a patient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+
+      responses:
+        '201':
+          description: Created
+        default:
+          description: Unexpected error
+
+
+  /patients/{id}:
+    get:
+      summary: Returns a patient by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of a patient
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: A patient object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A patient with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+    put:
+      summary: Updates the name of a patient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Updated
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: Deletes a patient
+      responses:
+        '200':
+          description: Confirms patient's deletion
+
 components:
   schemas:
     Facility:
@@ -135,18 +452,20 @@ components:
           type: integer
           example: 2
           minimum: 1
-        firstName:
+        startTime:
           type: string
-          example: "Bill"
-          description: Patient's first name
-        lastName:
+          description: Datetime string
+        endTime:
           type: string
-          example: "Pack"
-          description: Patient's last name
-        age:
-          type: integer
-          example: 47
-          description: Patient's age
+          description: Datetime string
+        patient:
+          type: object
+          items:
+            $ref: '#/components/schemas/Patient'
+        doctor:
+          type: object
+          items:
+            $ref: '#/components/schemas/Doctor'
         address:
           type: object
           items:

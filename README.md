@@ -3,7 +3,7 @@
     Base URL
     http://localhost:8080/api/v1/<resource>/<ID>?<ParamKey>=<ParamVal>
 
-#### Facilities URL
+#### Facilities URLS
 
     Returns a JSON list of facility objects
     GET http://localhost:8080/api/v1/facilities
@@ -42,7 +42,6 @@ Response body example:
 ````json
 Request body example:
 {
-    "id": 123,
     "name": "St. Joseph Krankenhaus"
 }
 ````
@@ -54,7 +53,6 @@ Request body example:
 ````json
 Request body example:
 {
-   "id": 123,
    "name": "St. Joseph Krankenhaus"
 }
 ````
@@ -63,7 +61,7 @@ Request body example:
     DELETE http://localhost:8080/api/v1/facilities/<id>
 --------------------------------------------------------------
 
-#### Address URL
+#### Address URLS
 
     Returns a JSON list of address objects
     GET http://localhost:8080/api/v1/addresses
@@ -111,7 +109,6 @@ Response body example:
 ````json
 Request body example:
 {
-    "id": 123145,
     "street": "Kleistr",
     "houseNumber": "15",
     "zip": 12234,
@@ -126,7 +123,6 @@ Request body example:
 ````json
 Request body example:
 {
-    "id": 123143,
     "street": "Mehringdamm",
     "houseNumber": "46",
     "zip": 10965,
@@ -175,7 +171,6 @@ Response body example:
 ```json
 Request body example:
 {
-    "id": 420394,
     "firstName": "fName",
     "lastName": "lName"
 }
@@ -188,7 +183,6 @@ Request body example:
 ````json
 Request body example:
 {
-    "id": 420394,
     "firstName": "fName",
     "lastName": "lName"
 }
@@ -198,7 +192,7 @@ Request body example:
     DELETE http://localhost:8080/api/v1/doctors/<id>
 --------------------------------------------------------------
 
-#### Appointments URLS
+#### APPOINTMENTS URLS
 
     Returns a JSON list of appointment objects
     GET http://localhost:8080/api/v1/appointments
@@ -209,7 +203,7 @@ Response body example:
     {
         "id": 1,
         "startTime": <dateTime>,
-        "lastName": <dateTime>,
+        "endTime": <dateTime>,
         "patient": { <patient obj> }
         "doctor" { <doctor obj> },
         "location": {
@@ -218,6 +212,18 @@ Response body example:
             "facility": "facility name"
         }
     },
+    {
+        "id": 2,
+        "startTime": <dateTime>,
+        "endTime": <dateTime>,
+        "patient": { <patient obj> }
+        "doctor" { <doctor obj> },
+        "location": {
+            "completeAddress": "",
+            "department": "dep name",
+            "facility": "facility name"
+        }
+    }
 ]
 ````
 
@@ -229,14 +235,16 @@ Response body example:
 ````json
 Response body example:
 {
-  "id": 1,
-  "firstName": "fName",
-  "lastName": "lName",
-  "age": 47,
-  "phone": "+1234142",
-  "address": {
-    <address obj>
-  }
+    "id": 1,
+    "startTime": <dateTime>,
+    "endTime": <dateTime>,
+    "patient": { <patient obj> }
+    "doctor" { <doctor obj> },
+    "location": {
+        "completeAddress": "",
+        "department": "dep name",
+        "facility": "facility name"
+    }
 }
 ````
 
@@ -246,16 +254,17 @@ Response body example:
 
 ````json
 Request body example:
-    {
-        "id": 1,
-        "firstName": "fName",
-        "lastName": "lName",
-        "age": 47,
-        "phone": "",
-        "address": {
-            <address obj>
-        }
+{
+    "startTime": <dateTime>,
+    "endTime": <dateTime>,
+    "patient": { <patient obj> }
+    "doctor" { <doctor obj> },
+    "location": {
+        "completeAddress": "",
+        "department": "dep name",
+        "facility": "facility name"
     }
+}
 ````
 
 --------------------------------------------------------------
@@ -265,13 +274,15 @@ Request body example:
 ```json
 Request body example:
 {
-  "firstName": "fName",
-  "lastName": "lName",
-  "age": 47,
-  "phone": "+13414",
-  "address": {
-    <address obj>
-  }
+    "startTime": <dateTime>,
+    "endTime": <dateTime>,
+    "patient": { <patient obj> }
+    "doctor" { <doctor obj> },
+    "location": {
+        "completeAddress": "",
+        "department": "dep name",
+        "facility": "facility name"
+    }
 }
 ```
 
@@ -279,25 +290,25 @@ Request body example:
     DELETE http://localhost:8080/api/v1/appointments/<id>
 --------------------------------------------------------------
 
-#### Patients URLs
+#### PATIENTS URLS
 
     Returns a json list of patient objs
     GET http://localhost:8080/api/v1/patients
 
 ```json
 Response body example:
-    [
-        {
-            "insuranceNumber": 1,
-            "firstName": "fName",
-            "lastName": "lName",
-            "age": 47,
-            "phone": "",
-            "address": {
-                <address obj>
-            }
-        },
-    ]
+[
+    {
+        "insuranceNumber": 1,
+        "firstName": "fName",
+        "lastName": "lName",
+        "age": 47,
+        "phone": "",
+        "address": {
+            <address obj>
+        }
+    },
+]
 ```
 
 --------------------------------------------------------------
