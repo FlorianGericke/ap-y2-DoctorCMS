@@ -13,13 +13,13 @@ public class Doctor {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "CreatedAt")
+    @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updatedAt")
@@ -28,7 +28,7 @@ public class Doctor {
     @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @Column(name = "state")
+    @Column(name = "state", nullable = false)
     private String state;
 
     public Doctor(Long id, String firstName, String lastName, LocalDateTime createdAt, LocalDateTime updatedAt,
