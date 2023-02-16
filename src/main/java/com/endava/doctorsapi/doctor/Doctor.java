@@ -19,13 +19,13 @@ public class Doctor {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "created-at", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated-at")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Column(name = "deleted-at")
+    @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
     @Column(name = "state", nullable = false)
