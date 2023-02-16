@@ -6,6 +6,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import javax.print.Doc;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -26,14 +27,31 @@ public class DoctorService {
 		if (length == 0) {
 			doctorRepo.save(new Doctor(vorname, nachname));
 		}
+		throw new DoctorManagementException("Doctor with the name already exists");
 	}
 
 	public void put(Long id, String vorname, String nachname) {
-		Doctor doc = doctorRepo.findAll().stream().filter(doctor -> Objects.equals(doctor.getId(), id))
-				.findFirst().orElse(null);
+		Doctor doc = doctorRepo.findById(id)
+				.orElseThrow(() -> {
+					throw new DoctorManagementException("id not found");
+				});
 		doc.setFirstName(vorname);
 		doc.setLastName(nachname);
 		doctorRepo.save(doc);
+	}
+
+	public Doctor get(Long id) {
+		return doctorRepo.findById(id)
+				.orElseThrow(() -> {
+					throw new DoctorManagementException("id not found");
+				});
+	}
+
+	public Doctor get(String vorname, String nachname) {
+		return doctorRepo.findById(id)
+				.orElseThrow(() -> {
+					throw new DoctorManagementException("id not found");
+				});
 	}
 
 }

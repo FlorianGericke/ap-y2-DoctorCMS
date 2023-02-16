@@ -27,7 +27,7 @@ public class DoctorConfig {
 //			doctorService.postDoctor("Ardella", "Morpeth");
 //			doctorService.postDoctor("Romeo", "Oak");
 
-			doctorService.put(1078L,"Peter","Pahn");
+			doctorService.put(1178L,"Peter","Zahn");
 		};
 	}
 }
