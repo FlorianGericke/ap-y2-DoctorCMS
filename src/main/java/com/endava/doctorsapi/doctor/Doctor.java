@@ -19,35 +19,25 @@ public class Doctor {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created-at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updated-at")
     private LocalDateTime updatedAt;
 
-    @Column(name = "deletedAt")
+    @Column(name = "deleted-at")
     private LocalDateTime deletedAt;
 
     @Column(name = "state", nullable = false)
     private String state;
 
-    public Doctor(Long id, String firstName, String lastName, LocalDateTime createdAt, LocalDateTime updatedAt,
-                  LocalDateTime deletedAt, String state) {
-        this.id = id;
+    public Doctor(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.deletedAt = deletedAt;
-        this.state = state;
     }
 
     public Doctor() {
 
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getId() {
@@ -72,10 +62,6 @@ public class Doctor {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 
     public LocalDateTime getUpdatedAt() {
