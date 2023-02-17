@@ -1,0 +1,99 @@
+openapi: 3.0.0
+info:
+  title: HeadLess-Spring-Aplication (DMS)
+  version: 1.0.0
+servers:
+  - url: localhost:8080
+tags:
+  - name: Doctor
+paths:
+  /api/v1/doctors:
+    post:
+      tags:
+        - Doctor
+      summary: Adding new Doctor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: eefsfsef
+                lastName: kranfsefsdfeewewez
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Doctor
+      summary: Delete all by Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/doctors/:
+    put:
+      tags:
+        - Doctor
+      summary: Updating a Doctor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: Peter
+                lastName: Zahn
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: integer
+          example: '1205'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Doctor
+      summary: GetDoctor by name
+      parameters:
+        - name: firstName
+          in: query
+          schema:
+            type: string
+          example: Peter
+        - name: lastName
+          in: query
+          schema:
+            type: string
+          example: Zahn
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/doctors/all:
+    get:
+      tags:
+        - Doctor
+      summary: GetDoctor all
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Doctor
+      summary: Delete all
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

@@ -11,6 +11,7 @@ public class DoctorConfig {
 	@Bean
 	CommandLineRunner cmRun(DoctorService doctorService) {
 		return args -> {
+
 //			doctorService.postDoctor("Joey", "William");
 //			doctorService.postDoctor("Enid", "Kerkham");
 //			doctorService.postDoctor("Megan", "Huntingford");
@@ -27,10 +28,6 @@ public class DoctorConfig {
 //			doctorService.postDoctor("Ardella", "Morpeth");
 //			doctorService.postDoctor("Romeo", "Oak");
 
-//		doctorService.put(1140L,"Peter","Zahn");
-//
-//			doctorService.delete("Muffin", "Marrow");
-//
 		};
 	}
 }
