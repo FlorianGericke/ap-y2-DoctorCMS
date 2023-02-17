@@ -27,10 +27,10 @@ public class DoctorConfig {
 //			doctorService.postDoctor("Ardella", "Morpeth");
 //			doctorService.postDoctor("Romeo", "Oak");
 
-//			doctorService.put(1140L,"Peter","Zahn");
-
-			doctorService.delete("Muffin", "Marrow");
-
+//		doctorService.put(1140L,"Peter","Zahn");
+//
+//			doctorService.delete("Muffin", "Marrow");
+//
 		};
 	}
 }

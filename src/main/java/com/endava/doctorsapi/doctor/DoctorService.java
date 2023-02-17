@@ -15,24 +15,32 @@ public class DoctorService {
 		this.doctorRepo = doctorRepo;
 	}
 
-	public void postDoctor(String vorname, String nachname) {
-		long length = doctorRepo.findAll()
-				.stream()
-				.filter(doctor -> doctor.getFirstName().equals(vorname) && doctor.getLastName().equals(nachname))
-				.count();
-		if (length != 0) {
-			throw new DoctorManagementException("Doctor with the name already exists");
-		}
-		doctorRepo.save(new Doctor(vorname, nachname));
+	public void postDoctor(Doctor doctor) {
+		this.postDoctor(doctor.getFirstName(), doctor.getLastName());
 	}
 
-	public void put(Long id, String vorname, String nachname) {
+	public void postDoctor(String firstName, String lastName) {
+		long length = doctorRepo.findAll()
+				.stream()
+				.filter(doctor -> doctor.getFirstName().equals(firstName) && doctor.getLastName().equals(lastName))
+				.count();
+		if (length != 0) {
+			throw new DoctorManagementException("Doctor with the name " + firstName + " " + lastName + " already exists");
+		}
+		doctorRepo.save(new Doctor(firstName, lastName));
+	}
+
+	public void put(Long id, Doctor doc) {
+		this.put(id, doc.getFirstName(), doc.getLastName());
+	}
+
+	public void put(Long id, String firstName, String lastName) {
 		Doctor doc = doctorRepo.findById(id)
 				.orElseThrow(() -> {
 					throw new DoctorManagementException("id not found");
 				});
-		doc.setFirstName(vorname);
-		doc.setLastName(nachname);
+		doc.setFirstName(firstName);
+		doc.setLastName(lastName);
 		doctorRepo.save(doc);
 	}
 
@@ -43,13 +51,13 @@ public class DoctorService {
 				});
 	}
 
-	public Doctor get(String vorname, String nachname) {
+	public Doctor get(String firstName, String lastName) {
 		return doctorRepo.findAll()
 				.stream()
-				.filter(doctor -> doctor.getFirstName().equals(vorname) && doctor.getLastName().equals(nachname))
+				.filter(doctor -> doctor.getFirstName().equals(firstName) && doctor.getLastName().equals(lastName))
 				.findFirst()
 				.orElseThrow(() -> {
-					throw new DoctorManagementException("Doctor with " + vorname + "  " + nachname + "not found");
+					throw new DoctorManagementException("Doctor with " + firstName + "  " + lastName + "not found");
 				});
 	}
 
@@ -57,12 +65,8 @@ public class DoctorService {
 		return doctorRepo.findAll();
 	}
 
-	public void delete(Doctor doctor) {
-		doctorRepo.delete(doctor);
-	}
-
-	public void delete(String vorname, String nachname) {
-		doctorRepo.delete(this.get(vorname, nachname));
+	public void delete(String firstName, String lastName) {
+		doctorRepo.delete(this.get(firstName, lastName));
 	}
 
 	public void delete(Long id) {

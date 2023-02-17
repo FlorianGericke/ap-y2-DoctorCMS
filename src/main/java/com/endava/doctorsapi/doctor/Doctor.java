@@ -23,7 +23,7 @@ public class Doctor {
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
-	@Column(name = "created_at")
+	@Column(name = "created_at", nullable = false)
 	private LocalDateTime createdAt;
 
 	@Column(name = "updated_at")
