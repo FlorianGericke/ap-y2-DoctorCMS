@@ -1,14 +1,10 @@
 package com.endava.doctorsapi.doctor;
 
-import jakarta.persistence.PrePersist;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
-import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.List;
+
 
 @Service
 public class DoctorService {
@@ -24,10 +20,10 @@ public class DoctorService {
 				.stream()
 				.filter(doctor -> doctor.getFirstName().equals(vorname) && doctor.getLastName().equals(nachname))
 				.count();
-		if (length == 0) {
-			doctorRepo.save(new Doctor(vorname, nachname));
+		if (length != 0) {
+			throw new DoctorManagementException("Doctor with the name already exists");
 		}
-		throw new DoctorManagementException("Doctor with the name already exists");
+		doctorRepo.save(new Doctor(vorname, nachname));
 	}
 
 	public void put(Long id, String vorname, String nachname) {
@@ -48,10 +44,37 @@ public class DoctorService {
 	}
 
 	public Doctor get(String vorname, String nachname) {
-		return doctorRepo.findById(id)
+		return doctorRepo.findAll()
+				.stream()
+				.filter(doctor -> doctor.getFirstName().equals(vorname) && doctor.getLastName().equals(nachname))
+				.findFirst()
 				.orElseThrow(() -> {
-					throw new DoctorManagementException("id not found");
+					throw new DoctorManagementException("Doctor with " + vorname + "  " + nachname + "not found");
 				});
+	}
+
+	public List<Doctor> getAll() {
+		return doctorRepo.findAll();
+	}
+
+	public void delete(Doctor doctor) {
+		doctorRepo.delete(doctor);
+	}
+
+	public void delete(String vorname, String nachname) {
+		doctorRepo.delete(this.get(vorname, nachname));
+	}
+
+	public void delete(Long id) {
+		doctorRepo.deleteById(id);
+	}
+
+	public void deleteAllById(Iterable<? extends Long> longs) {
+		doctorRepo.deleteAllById(longs);
+	}
+
+	public void deleteAll() {
+		doctorRepo.deleteAll();
 	}
 
 }

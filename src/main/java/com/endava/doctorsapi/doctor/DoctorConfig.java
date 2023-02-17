@@ -29,7 +29,7 @@ public class DoctorConfig {
 
 //			doctorService.put(1140L,"Peter","Zahn");
 
-			doctorService.delete(1153L);
+			doctorService.delete("Muffin", "Marrow");
 
 		};
 	}
