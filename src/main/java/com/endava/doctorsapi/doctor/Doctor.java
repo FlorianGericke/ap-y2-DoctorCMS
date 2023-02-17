@@ -48,8 +48,18 @@ public class Doctor {
 
 	@PreUpdate
 	public void onPreUpdate() {
+		if(state.equals(EntityStates.DELETED.toString())){
+			return;
+		}
 		this.updatedAt = LocalDateTime.now();
 		this.state = EntityStates.UPDATED.toString();
+	}
+
+	@PostRemove
+	public void onPostRemove() {
+		this.deletedAt = LocalDateTime.now();
+		this.state = EntityStates.DELETED.toString();
+		System.out.println(getFirstName() + " " + getLastName() + " is removed");
 	}
 
 	public Doctor() {
