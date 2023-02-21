@@ -56,7 +56,7 @@ public class DoctorController {
 	}
 
 
-	@DeleteMapping("/all")
+	@DeleteMapping("/")
 	public void onDeleteAll() {
 		doctorService.deleteAll();
 
