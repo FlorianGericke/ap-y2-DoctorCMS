@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/doctors")
@@ -50,24 +51,28 @@ public class DoctorController {
 		return doctorService.get(id);
 	}
 
-	@GetMapping("/")
+	@GetMapping()
 	public List<Doctor> onGetAll() {
 		return doctorService.getAll();
 	}
 
 
-	@DeleteMapping("/")
-	public void onDeleteAll() {
-		doctorService.deleteAll();
+	@DeleteMapping("/{id}")
+	public void onDelete(@PathVariable(value = "id") Long id) {
+		if (id == null) {
+			throw new DoctorManagementException("Invalid param id is null");
+		}
 
+		if (doctorService.get(id).getState().equals(EntityStates.DELETED.toString())) {
+			throw new DoctorManagementException("Cannot delete a doctor that is already in the state deleted");
+		}
+		doctorService.delete(id);
 	}
 
 	@DeleteMapping()
-	@ResponseBody
-	public void onDeleteAll(@RequestBody(required = false) DeleteAllById params,
-	                        @RequestParam(name = "id", required = false) Long id) {
-		if (params != null && id == null) {
-			Iterator<Long> ids = Arrays.stream(params.ids()).iterator();
+	public void onDeleteAll(@RequestBody(required = false) Optional<DeleteAllById> params) {
+		if (params.isPresent()) {
+			Iterator<Long> ids = Arrays.stream(params.get().ids()).iterator();
 			doctorService.deleteAllById(new Iterable<Long>() {
 				@Override
 				public Iterator<Long> iterator() {
@@ -77,14 +82,6 @@ public class DoctorController {
 			return;
 		}
 
-		if (id != null) {
-			doctorService.delete(id);
-			return;
-		}
-
-		throw new DoctorManagementException("Invalid params choose between id or (firstName && lastName) or RequestBody with ids:[]");
-
+		doctorService.deleteAll();
 	}
-
-
 }
