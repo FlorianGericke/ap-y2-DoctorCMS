@@ -28,16 +28,16 @@ public class DoctorController {
 		doctorService.postDoctor(doc);
 	}
 
-	@PutMapping("/")
-	public void onPut(@RequestParam(name = "id") Long id, @RequestBody Doctor doc) {
-		if (doc.getFirstName() == null || doc.getFirstName().length() < 3 ||
-				doc.getLastName() == null || doc.getLastName().length() < 3) {
-			throw new DoctorManagementException("Please provide a first name and last name (minimum 3 chars)");
-		}
+	@PutMapping("/{id}")
+	public void onPut(@PathVariable(value = "id") Long id, @RequestParam(name = "firstname") String firstname, @RequestParam(name = "lastname") String lastname) {
+
 		if (doctorService.get(id).getState().equals(EntityStates.DELETED.toString())) {
 			throw new DoctorManagementException("Cannot change a deleted Doctor");
 		}
-		doctorService.put(id, doc);
+		if (firstname.equals("") || lastname.equals("")) {
+			throw new DoctorManagementException("Please provide a first name and last name");
+		}
+		doctorService.put(id, firstname, lastname);
 	}
 
 	@GetMapping("/")
