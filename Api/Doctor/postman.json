@@ -9,13 +9,44 @@
 			"name": "Doctor",
 			"item": [
 				{
-					"name": "Adding new Doctor",
+					"name": "Adding new Doctor (params)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/doctors?firstname=Esel&lastname=Musik",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"doctors"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "Esel"
+								},
+								{
+									"key": "lastname",
+									"value": "Musik"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adding new Doctor (body)",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\":\"eefsfsef\",\n    \"lastName\":\"kranfsefsdfeewewez\"\n}",
+							"raw": "{\n    \"firstName\":\"Werner\",\n    \"lastName\":\"Kessel\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -39,21 +70,12 @@
 					"response": []
 				},
 				{
-					"name": "Updating a Doctor",
+					"name": "Updating a Doctor (params)",
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"firstName\":\"Peter\",\n    \"lastName\":\"Zahn\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/doctors/?id=1205",
+							"raw": "http://localhost:8080/api/v1/doctors/1230?firstname=Hanz&lastname=Mom",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -63,12 +85,16 @@
 								"api",
 								"v1",
 								"doctors",
-								""
+								"1230"
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "1205"
+									"key": "firstname",
+									"value": "Hanz"
+								},
+								{
+									"key": "lastname",
+									"value": "Mom"
 								}
 							]
 						}
@@ -93,7 +119,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/doctors/?id=1171",
+							"raw": "http://localhost:8080/api/v1/doctors/1230",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -103,57 +129,7 @@
 								"api",
 								"v1",
 								"doctors",
-								""
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1171"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetDoctor by name",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/doctors/?firstName=Peter&lastName=Zahn",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"doctors",
-								""
-							],
-							"query": [
-								{
-									"key": "firstName",
-									"value": "Peter"
-								},
-								{
-									"key": "lastName",
-									"value": "Zahn"
-								}
+								"1230"
 							]
 						}
 					},
@@ -177,7 +153,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/doctors/all",
+							"raw": "http://localhost:8080/api/v1/doctors",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -186,8 +162,7 @@
 							"path": [
 								"api",
 								"v1",
-								"doctors",
-								"all"
+								"doctors"
 							]
 						}
 					},
@@ -199,29 +174,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/doctors/all",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"doctors",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete by name",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/doctors?firstName=Enid&lastName=Kerkham&",
+							"raw": "http://localhost:8080/api/v1/doctors",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -231,20 +184,6 @@
 								"api",
 								"v1",
 								"doctors"
-							],
-							"query": [
-								{
-									"key": "firstName",
-									"value": "Enid"
-								},
-								{
-									"key": "lastName",
-									"value": "Kerkham"
-								},
-								{
-									"key": "",
-									"value": null
-								}
 							]
 						}
 					},
@@ -265,7 +204,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/doctors?id=1201",
+							"raw": "http://localhost:8080/api/v1/doctors/1210",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -274,13 +213,8 @@
 							"path": [
 								"api",
 								"v1",
-								"doctors"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1201"
-								}
+								"doctors",
+								"1210"
 							]
 						}
 					},
@@ -293,7 +227,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ids\" : [1198,1203]\n}",
+							"raw": "{\n    \"ids\" : [1211,1212]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -311,6 +245,37 @@
 								"api",
 								"v1",
 								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updating a Doctor (body)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Peter\",\n    \"lastName\":\"Pahn\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/doctors/1230",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"doctors",
+								"1230"
 							]
 						}
 					},

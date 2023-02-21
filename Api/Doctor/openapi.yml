@@ -3,7 +3,7 @@ info:
   title: HeadLess-Spring-Aplication (DMS)
   version: 1.0.0
 servers:
-  - url: localhost:8080
+  - url: http://localhost:8080
 tags:
   - name: Doctor
 paths:
@@ -11,15 +11,24 @@ paths:
     post:
       tags:
         - Doctor
-      summary: Adding new Doctor
+      summary: Adding new Doctor (body)
       requestBody:
         content:
           application/json:
             schema:
               type: object
               example:
-                firstName: eefsfsef
-                lastName: kranfsefsdfeewewez
+                firstName: Werner
+                lastName: Kessel
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Doctor
+      summary: GetDoctor all
       responses:
         '200':
           description: Successful response
@@ -34,11 +43,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/doctors/:
+  /api/v1/doctors/1230:
     put:
       tags:
         - Doctor
-      summary: Updating a Doctor
+      summary: Updating a Doctor (body)
       requestBody:
         content:
           application/json:
@@ -46,13 +55,7 @@ paths:
               type: object
               example:
                 firstName: Peter
-                lastName: Zahn
-      parameters:
-        - name: id
-          in: query
-          schema:
-            type: integer
-          example: '1205'
+                lastName: Pahn
       responses:
         '200':
           description: Successful response
@@ -61,37 +64,17 @@ paths:
     get:
       tags:
         - Doctor
-      summary: GetDoctor by name
-      parameters:
-        - name: firstName
-          in: query
-          schema:
-            type: string
-          example: Peter
-        - name: lastName
-          in: query
-          schema:
-            type: string
-          example: Zahn
+      summary: GetDoctor by Id
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/v1/doctors/all:
-    get:
-      tags:
-        - Doctor
-      summary: GetDoctor all
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+  /api/v1/doctors/1210:
     delete:
       tags:
         - Doctor
-      summary: Delete all
+      summary: Delete by id
       responses:
         '200':
           description: Successful response
