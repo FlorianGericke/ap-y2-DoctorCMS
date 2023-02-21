@@ -1,5 +1,6 @@
 package com.endava.doctorsapi.doctor;
 
+import com.endava.doctorsapi.EntityStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +21,6 @@ public class DoctorService {
 	}
 
 	public void postDoctor(String firstName, String lastName) {
-		long length = doctorRepo.findAll()
-				.stream()
-				.filter(doctor -> doctor.getFirstName().equals(firstName) && doctor.getLastName().equals(lastName))
-				.count();
-		if (length != 0) {
-			throw new DoctorManagementException("Doctor with the name " + firstName + " " + lastName + " already exists");
-		}
 		doctorRepo.save(new Doctor(firstName, lastName));
 	}
 
@@ -51,22 +45,8 @@ public class DoctorService {
 				});
 	}
 
-	public Doctor get(String firstName, String lastName) {
-		return doctorRepo.findAll()
-				.stream()
-				.filter(doctor -> doctor.getFirstName().equals(firstName) && doctor.getLastName().equals(lastName))
-				.findFirst()
-				.orElseThrow(() -> {
-					throw new DoctorManagementException("Doctor with " + firstName + "  " + lastName + "not found");
-				});
-	}
-
 	public List<Doctor> getAll() {
-		return doctorRepo.findAll();
-	}
-
-	public void delete(String firstName, String lastName) {
-		doctorRepo.delete(this.get(firstName, lastName));
+		return doctorRepo.findAllByStateIsNot(EntityStates.DELETED.toString());
 	}
 
 	public void delete(Long id) {

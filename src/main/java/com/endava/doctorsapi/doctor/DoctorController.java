@@ -34,24 +34,16 @@ public class DoctorController {
 				doc.getLastName() == null || doc.getLastName().length() < 3) {
 			throw new DoctorManagementException("Please provide a first name and last name (minimum 3 chars)");
 		}
-		if (doctorService.get(id).getState().equals(EntityStates.DELETED.toString())){
+		if (doctorService.get(id).getState().equals(EntityStates.DELETED.toString())) {
 			throw new DoctorManagementException("Cannot change a deleted Doctor");
 		}
 		doctorService.put(id, doc);
 	}
 
 	@GetMapping("/")
-	public Doctor onGet(
-			@RequestParam(name = "id", required = false) Long id,
-			@RequestParam(name = "firstName", required = false) String firstName,
-			@RequestParam(name = "lastName", required = false) String lastName) {
-
-		if (id != null && firstName == null && lastName == null) {
+	public Doctor onGet(@RequestParam(name = "id", required = false) Long id) {
+		if (id != null) {
 			return doctorService.get(id);
-		}
-
-		if (id == null && firstName != null && lastName != null) {
-			return doctorService.get(firstName, lastName);
 		}
 
 		throw new DoctorManagementException("Invalid params choose between id or (firstName && lastName)");
@@ -71,13 +63,8 @@ public class DoctorController {
 	@DeleteMapping()
 	@ResponseBody
 	public void onDeleteAll(@RequestBody(required = false) DeleteAllById params,
-	                        @RequestParam(name = "id", required = false) Long id,
-	                        @RequestParam(name = "firstName", required = false) String firstName,
-	                        @RequestParam(name = "lastName", required = false) String lastName) {
-		if (params != null &&
-				id == null &&
-				firstName == null &&
-				lastName == null) {
+	                        @RequestParam(name = "id", required = false) Long id) {
+		if (params != null && id == null) {
 			Iterator<Long> ids = Arrays.stream(params.ids()).iterator();
 			doctorService.deleteAllById(new Iterable<Long>() {
 				@Override
@@ -88,17 +75,8 @@ public class DoctorController {
 			return;
 		}
 
-		if (id != null && params == null &&
-				firstName == null &&
-				lastName == null) {
+		if (id != null ) {
 			doctorService.delete(id);
-			return;
-		}
-
-		if ((firstName != null && lastName != null) &&
-				id == null &&
-				params == null ) {
-			doctorService.delete(firstName, lastName);
 			return;
 		}
 

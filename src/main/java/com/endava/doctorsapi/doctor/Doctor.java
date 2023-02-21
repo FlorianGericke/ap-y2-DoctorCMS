@@ -2,10 +2,7 @@ package com.endava.doctorsapi.doctor;
 
 import com.endava.doctorsapi.EntityStates;
 import jakarta.persistence.*;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
