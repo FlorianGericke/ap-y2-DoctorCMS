@@ -49,10 +49,11 @@ public class DoctorController {
 		throw new DoctorManagementException("Invalid params choose between id or (firstName && lastName)");
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/")
 	public List<Doctor> onGetAll() {
 		return doctorService.getAll();
 	}
+
 
 	@DeleteMapping("/all")
 	public void onDeleteAll() {
@@ -75,7 +76,7 @@ public class DoctorController {
 			return;
 		}
 
-		if (id != null ) {
+		if (id != null) {
 			doctorService.delete(id);
 			return;
 		}
