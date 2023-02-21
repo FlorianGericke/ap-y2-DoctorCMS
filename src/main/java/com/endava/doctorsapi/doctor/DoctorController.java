@@ -30,7 +30,9 @@ public class DoctorController {
 
 	@PutMapping("/{id}")
 	public void onPut(@PathVariable(value = "id") Long id, @RequestParam(name = "firstname") String firstname, @RequestParam(name = "lastname") String lastname) {
-
+		if (id == null) {
+			throw new DoctorManagementException("Invalid param id is null");
+		}
 		if (doctorService.get(id).getState().equals(EntityStates.DELETED.toString())) {
 			throw new DoctorManagementException("Cannot change a deleted Doctor");
 		}
@@ -40,13 +42,12 @@ public class DoctorController {
 		doctorService.put(id, firstname, lastname);
 	}
 
-	@GetMapping("/")
-	public Doctor onGet(@RequestParam(name = "id", required = false) Long id) {
-		if (id != null) {
-			return doctorService.get(id);
+	@GetMapping("/{id}")
+	public Doctor onGet(@PathVariable(value = "id") Long id) {
+		if (id == null) {
+			throw new DoctorManagementException("Invalid param id is null");
 		}
-
-		throw new DoctorManagementException("Invalid params choose between id or (firstName && lastName)");
+		return doctorService.get(id);
 	}
 
 	@GetMapping("/")
