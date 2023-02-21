@@ -20,17 +20,35 @@ public class DoctorController {
 		this.doctorService = doctorService;
 	}
 
-	@PostMapping
-	public void onPost(@RequestBody Doctor doc) {
-		if (doc.getFirstName() == null || doc.getFirstName().length() < 3 ||
-				doc.getLastName() == null || doc.getLastName().length() < 3) {
-			throw new DoctorManagementException("Please provide a first name and last name (minimum 3 chars)");
+	@PostMapping()
+	public void onPost(@RequestBody(required = false) Optional<Doctor> doc,
+	                   @RequestParam(name = "firstname", required = false) Optional<String> firstname,
+	                   @RequestParam(name = "lastname", required = false) Optional<String> lastname) {
+
+		if (doc.isPresent() && firstname.isEmpty() && lastname.isEmpty()) {
+			if (doc.get().getFirstName() == null || doc.get().getFirstName().length() < 3 ||
+					doc.get().getLastName() == null || doc.get().getLastName().length() < 3) {
+				throw new DoctorManagementException("Please provide a first name and last name (minimum 3 chars)");
+			}
+			doctorService.postDoctor(doc.get());
+			return;
 		}
-		doctorService.postDoctor(doc);
+
+		if (doc.isEmpty() && firstname.isPresent() && lastname.isPresent()) {
+			if (firstname.get().length() < 3 || lastname.get().length() < 3) {
+				throw new DoctorManagementException("Please provide a first name and last name (minimum 3 chars)");
+			}
+			doctorService.postDoctor(firstname.get(), lastname.get());
+			return;
+		}
+
+		throw new DoctorManagementException("Please provide a RequestBody firstname and lastname or Query Params with them");
 	}
 
 	@PutMapping("/{id}")
-	public void onPut(@PathVariable(value = "id") Long id, @RequestParam(name = "firstname") String firstname, @RequestParam(name = "lastname") String lastname) {
+	public void onPut(@PathVariable(value = "id") Long id,
+	                  @RequestParam(name = "firstname") String firstname,
+	                  @RequestParam(name = "lastname") String lastname) {
 		if (id == null) {
 			throw new DoctorManagementException("Invalid param id is null");
 		}
