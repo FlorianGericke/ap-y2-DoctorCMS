@@ -1,62 +1,23 @@
 package com.endava.doctorsapi.doctor;
 
 import com.endava.doctorsapi.EntityStates;
+import com.endava.doctorsapi.EntityBase;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "doctors")
-public class Doctor {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique = true, nullable = false)
-	private Long id;
-
+public class Doctor extends EntityBase {
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
 
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
-	@Column(name = "created_at", nullable = false)
-	private LocalDateTime createdAt;
-
-	@Column(name = "updated_at")
-	private LocalDateTime updatedAt;
-
-	@Column(name = "deleted_at")
-	private LocalDateTime deletedAt;
-
-	@Column(name = "state", nullable = false)
-	private String state;
-
 	public Doctor(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-	}
-
-	@PrePersist
-	public void onPrePersist() {
-		this.createdAt = LocalDateTime.now();
-		this.state = EntityStates.CREATED.toString();
-	}
-
-	@PreUpdate
-	public void onPreUpdate() {
-		if(state.equals(EntityStates.DELETED.toString())){
-			return;
-		}
-		this.updatedAt = LocalDateTime.now();
-		this.state = EntityStates.UPDATED.toString();
-	}
-
-	@PostRemove
-	public void onPostRemove() {
-		this.deletedAt = LocalDateTime.now();
-		this.state = EntityStates.DELETED.toString();
-		System.out.println(getFirstName() + " " + getLastName() + " is removed");
 	}
 
 	public Doctor() {
@@ -81,34 +42,6 @@ public class Doctor {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public LocalDateTime getDeletedAt() {
-		return deletedAt;
-	}
-
-	public void setDeletedAt(LocalDateTime deletedAt) {
-		this.deletedAt = deletedAt;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
 	}
 
 	@Override
