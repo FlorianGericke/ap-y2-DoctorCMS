@@ -1,7 +1,7 @@
-package com.endava.doctorsapi.tabels.doctor;
+package com.endava.doctorsapi.tables.doctor;
 
 
-import com.endava.doctorsapi.tabels.general.RepoBase;
+import com.endava.doctorsapi.tables.general.RepoBase;
 
 import org.springframework.stereotype.Repository;
 

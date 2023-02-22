@@ -1,7 +1,7 @@
-package com.endava.doctorsapi.tabels.general;
+package com.endava.doctorsapi.tables.general;
 
 
-import com.endava.doctorsapi.tabels.doctor.DoctorManagementException;
+import com.endava.doctorsapi.tables.doctor.DoctorManagementException;
 import jakarta.persistence.PostRemove;
 import org.springframework.data.jpa.repository.JpaRepository;
 
