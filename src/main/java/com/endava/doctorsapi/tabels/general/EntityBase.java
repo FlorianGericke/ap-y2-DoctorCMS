@@ -1,41 +1,27 @@
-package com.endava.doctorsapi.doctor;
+package com.endava.doctorsapi.tabels.general;
 
-import com.endava.doctorsapi.EntityStates;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "doctors")
-public class Doctor {
-
+@MappedSuperclass
+public class EntityBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
-	private Long id;
-
-	@Column(name = "first_name", nullable = false)
-	private String firstName;
-
-	@Column(name = "last_name", nullable = false)
-	private String lastName;
+	protected Long id;
 
 	@Column(name = "created_at", nullable = false)
-	private LocalDateTime createdAt;
+	protected LocalDateTime createdAt;
 
 	@Column(name = "updated_at")
-	private LocalDateTime updatedAt;
+	protected LocalDateTime updatedAt;
 
 	@Column(name = "deleted_at")
-	private LocalDateTime deletedAt;
+	protected LocalDateTime deletedAt;
 
 	@Column(name = "state", nullable = false)
-	private String state;
-
-	public Doctor(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
+	protected String state;
 
 	@PrePersist
 	public void onPrePersist() {
@@ -56,31 +42,10 @@ public class Doctor {
 	public void onPostRemove() {
 		this.deletedAt = LocalDateTime.now();
 		this.state = EntityStates.DELETED.toString();
-		System.out.println(getFirstName() + " " + getLastName() + " is removed");
-	}
-
-	public Doctor() {
-
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -109,18 +74,5 @@ public class Doctor {
 
 	public void setState(String state) {
 		this.state = state;
-	}
-
-	@Override
-	public String toString() {
-		return "Doctor{" +
-				"id=" + id +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", createdAt=" + createdAt +
-				", updatedAt=" + updatedAt +
-				", deletedAt=" + deletedAt +
-				", state='" + state + '\'' +
-				'}';
 	}
 }

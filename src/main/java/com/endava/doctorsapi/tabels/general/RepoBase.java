@@ -1,25 +1,19 @@
-package com.endava.doctorsapi.doctor;
+package com.endava.doctorsapi.tabels.general;
 
-import com.endava.doctorsapi.EntityStates;
+
+import com.endava.doctorsapi.tabels.doctor.DoctorManagementException;
 import jakarta.persistence.PostRemove;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import javax.print.Doc;
-import javax.swing.text.html.HTMLDocument;
-import javax.swing.text.html.parser.Entity;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
-@Repository
-public interface DoctorRepo extends JpaRepository<Doctor, Long> {
+public interface RepoBase<Entity extends EntityBase, Id> extends JpaRepository<Entity, Id> {
+
+
 	@Override
-	default void delete(Doctor entity) {
+	default void delete(Entity entity) {
 		if (entity.getDeletedAt() != null) {
 			throw new DoctorManagementException("Cannot delete Doctor entity twice");
 		}
@@ -52,10 +46,10 @@ public interface DoctorRepo extends JpaRepository<Doctor, Long> {
 	}
 
 	@Override
-	default void deleteById(Long aLong) {
+	default void deleteById(Id id) {
 		this.delete(this.findAll()
 				.stream()
-				.filter(entity -> entity.getId().equals(aLong))
+				.filter(entity -> entity.getId().equals(id))
 				.findFirst()
 				.orElseThrow(() -> {
 					throw new DoctorManagementException("id not found");
@@ -63,10 +57,8 @@ public interface DoctorRepo extends JpaRepository<Doctor, Long> {
 		);
 	}
 
-	List<Doctor> findAllByStateIsNot(String state);
-
 	@Override
-	default void deleteAllById(Iterable<? extends Long> longs) {
-		longs.forEach(this::deleteById);
+	default void deleteAllById(Iterable<? extends Id> ids) {
+		ids.forEach(this::deleteById);
 	}
 }
