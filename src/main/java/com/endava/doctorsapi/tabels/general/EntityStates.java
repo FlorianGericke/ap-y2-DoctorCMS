@@ -1,4 +1,4 @@
-package com.endava.doctorsapi;
+package com.endava.doctorsapi.tabels.general;
 
 public enum EntityStates {
 	CREATED("created"),

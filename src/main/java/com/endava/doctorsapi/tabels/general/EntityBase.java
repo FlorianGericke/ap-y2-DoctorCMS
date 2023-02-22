@@ -1,4 +1,4 @@
-package com.endava.doctorsapi;
+package com.endava.doctorsapi.tabels.general;
 
 import jakarta.persistence.*;
 
@@ -42,6 +42,10 @@ public class EntityBase {
 	public void onPostRemove() {
 		this.deletedAt = LocalDateTime.now();
 		this.state = EntityStates.DELETED.toString();
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public LocalDateTime getCreatedAt() {
