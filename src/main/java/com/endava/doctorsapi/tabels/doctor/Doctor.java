@@ -1,10 +1,7 @@
-package com.endava.doctorsapi.doctor;
+package com.endava.doctorsapi.tabels.doctor;
 
-import com.endava.doctorsapi.EntityStates;
-import com.endava.doctorsapi.EntityBase;
+import com.endava.doctorsapi.tabels.general.EntityBase;
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "doctors")
@@ -22,10 +19,6 @@ public class Doctor extends EntityBase {
 
 	public Doctor() {
 
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public String getFirstName() {

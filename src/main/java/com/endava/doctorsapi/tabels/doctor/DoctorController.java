@@ -1,6 +1,6 @@
-package com.endava.doctorsapi.doctor;
+package com.endava.doctorsapi.tabels.doctor;
 
-import com.endava.doctorsapi.EntityStates;
+import com.endava.doctorsapi.tabels.general.EntityStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
