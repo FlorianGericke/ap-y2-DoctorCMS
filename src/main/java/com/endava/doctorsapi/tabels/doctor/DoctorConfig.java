@@ -1,4 +1,4 @@
-package com.endava.doctorsapi.doctor;
+package com.endava.doctorsapi.tabels.doctor;
 
 
 import org.springframework.boot.CommandLineRunner;
