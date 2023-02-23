@@ -6,6 +6,7 @@ servers:
   - url: http://localhost:8080
 tags:
   - name: Doctor
+  - name: Adress
 paths:
   /api/v1/doctors:
     post:
@@ -74,6 +75,82 @@ paths:
     delete:
       tags:
         - Doctor
+      summary: Delete by id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/address:
+    post:
+      tags:
+        - Adress
+      summary: Adding new Address (body)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                street: Musterstrasse
+                houseNumber: 1B
+                postCode: 11111
+                location: Musterhausen
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Adress
+      summary: GetAddress all
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Adress
+      summary: Delete all by Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/address/29:
+    put:
+      tags:
+        - Adress
+      summary: Updating a Address (body)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                street: Alte
+                houseNumber: 1B
+                postCode: 11111
+                location: Bauer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Adress
+      summary: GetAddress by Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Adress
       summary: Delete by id
       responses:
         '200':
