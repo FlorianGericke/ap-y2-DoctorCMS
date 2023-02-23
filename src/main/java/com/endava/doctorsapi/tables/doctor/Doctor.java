@@ -1,6 +1,5 @@
 package com.endava.doctorsapi.tables.doctor;
 
-
 import com.endava.doctorsapi.tables.general.EntityBase;
 import jakarta.persistence.*;
 
@@ -20,10 +19,6 @@ public class Doctor extends EntityBase {
 
 	public Doctor() {
 
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public String getFirstName() {
