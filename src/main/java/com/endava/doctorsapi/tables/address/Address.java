@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.tables.general.EntityBase;
+import com.endava.doctorsapi.tables.general.base.EntityBase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

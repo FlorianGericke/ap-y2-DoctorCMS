@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.tables.doctor;
 
-import com.endava.doctorsapi.tables.general.EntityBase;
+import com.endava.doctorsapi.tables.general.base.EntityBase;
 import jakarta.persistence.*;
 
 @Entity

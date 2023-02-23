@@ -1,7 +1,7 @@
-package com.endava.doctorsapi.tables.general;
+package com.endava.doctorsapi.tables.general.base;
 
-
-import com.endava.doctorsapi.tables.doctor.DoctorManagementException;
+import com.endava.doctorsapi.tables.general.EntityStates;
+import com.endava.doctorsapi.tables.general.exceptions.CmsException;
 import jakarta.persistence.PostRemove;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,7 +15,7 @@ public interface RepoBase<Entity extends EntityBase, Id> extends JpaRepository<E
 	@Override
 	default void delete(Entity entity) {
 		if (entity.getDeletedAt() != null) {
-			throw new DoctorManagementException("Cannot delete Doctor entity twice");
+			throw new CmsException("Cannot delete Doctor entity twice");
 		}
 		Method deleteMethod = Arrays.stream(
 						entity.getClass()
@@ -25,16 +25,15 @@ public interface RepoBase<Entity extends EntityBase, Id> extends JpaRepository<E
 				.orElse(null);
 
 		if (deleteMethod == null) {
-			throw new DoctorManagementException("You need to provide a method wit Annotation @PostRemove");
+			throw new CmsException("You need to provide a method wit Annotation @PostRemove");
 		}
 
 		try {
 			deleteMethod.invoke(entity);
 			this.save(entity);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			throw new DoctorManagementException("[" + e.getClass().getName() + "] :" + e.getMessage());
+			throw new CmsException("[" + e.getClass().getName() + "] :" + e.getMessage());
 		}
-
 	}
 
 	@Override
@@ -52,7 +51,7 @@ public interface RepoBase<Entity extends EntityBase, Id> extends JpaRepository<E
 				.filter(entity -> entity.getId().equals(id))
 				.findFirst()
 				.orElseThrow(() -> {
-					throw new DoctorManagementException("id not found");
+					throw new CmsException("id not found");
 				})
 		);
 	}

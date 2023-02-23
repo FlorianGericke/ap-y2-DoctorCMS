@@ -1,6 +1,7 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.tables.general.ControllerBase;
+import com.endava.doctorsapi.tables.general.base.ControllerBase;
+import com.endava.doctorsapi.tables.general.exceptions.ControllerException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -53,7 +54,7 @@ public class AddressController extends ControllerBase<Address,AddressRepo,Addres
 					address.get().getPostCode() < 0 ||
 					(address.get().getLocation() == null || address.get().getLocation().length() < 3)
 			) {
-				throw new AddressManagementException("Please provide a valid Street, House number, postCode, and location in RequestBody (min 3 chars)");
+				throw new ControllerException(this, "Please provide a valid Street, House number, postCode, and location in RequestBody (min 3 chars)");
 			}
 
 			resolve.accept(address.get());
@@ -73,14 +74,14 @@ public class AddressController extends ControllerBase<Address,AddressRepo,Addres
 					parsedPostCode < 0 ||
 					location.get().length() < 3
 			) {
-				throw new AddressManagementException("Please provide a valid Street, House number, postCode, and location in RequestBody (min 3 chars)");
+				throw new ControllerException(this, "Please provide a valid Street, House number, postCode, and location in RequestBody (min 3 chars)");
 			}
 
 			resolve.accept(new Address(street.get(), houseNumber.get(), parsedPostCode, location.get()));
 			return;
 		}
 
-		throw new AddressManagementException("Please provide a RequestBody with street, houseNumber, postCode location or Query Params with them");
+		throw new ControllerException(this, "Please provide a RequestBody with street, houseNumber, postCode location or Query Params with them");
 	}
 }
 
