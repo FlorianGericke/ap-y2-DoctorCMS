@@ -1,19 +1,17 @@
 package com.endava.doctorsapi.tables.doctor;
 
-import com.endava.doctorsapi.tables.general.EntityStates;
+import com.endava.doctorsapi.tables.general.ServiceBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 
 @Service
-public class DoctorService {
-	private final DoctorRepo doctorRepo;
+public class DoctorService extends ServiceBase<Doctor,Long,DoctorRepo> {
 
 	@Autowired
 	public DoctorService(DoctorRepo doctorRepo) {
-		this.doctorRepo = doctorRepo;
+		super(doctorRepo);
 	}
 
 	public void postDoctor(Doctor doctor) {
@@ -21,7 +19,7 @@ public class DoctorService {
 	}
 
 	public void postDoctor(String firstName, String lastName) {
-		doctorRepo.save(new Doctor(firstName, lastName));
+		repo.save(new Doctor(firstName, lastName));
 	}
 
 	public void put(Long id, Doctor doc) {
@@ -29,36 +27,12 @@ public class DoctorService {
 	}
 
 	public void put(Long id, String firstName, String lastName) {
-		Doctor doc = doctorRepo.findById(id)
+		Doctor doc = repo.findById(id)
 				.orElseThrow(() -> {
 					throw new DoctorManagementException("id not found");
 				});
 		doc.setFirstName(firstName);
 		doc.setLastName(lastName);
-		doctorRepo.save(doc);
+		repo.save(doc);
 	}
-
-	public Doctor get(Long id) {
-		return doctorRepo.findById(id)
-				.orElseThrow(() -> {
-					throw new DoctorManagementException("id not found");
-				});
-	}
-
-	public List<Doctor> getAll() {
-		return doctorRepo.findAllByStateIsNot(EntityStates.DELETED.toString());
-	}
-
-	public void delete(Long id) {
-		doctorRepo.deleteById(id);
-	}
-
-	public void deleteAllById(Iterable<? extends Long> longs) {
-		doctorRepo.deleteAllById(longs);
-	}
-
-	public void deleteAll() {
-		doctorRepo.deleteAll();
-	}
-
 }
