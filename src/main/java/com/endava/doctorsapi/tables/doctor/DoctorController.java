@@ -1,5 +1,6 @@
 package com.endava.doctorsapi.tables.doctor;
 
+import com.endava.doctorsapi.tables.general.DeleteAllById;
 import com.endava.doctorsapi.tables.general.EntityStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

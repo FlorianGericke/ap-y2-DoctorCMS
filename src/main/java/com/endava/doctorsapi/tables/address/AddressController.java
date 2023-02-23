@@ -1,26 +1,17 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.tables.doctor.DeleteAllById;
-import com.endava.doctorsapi.tables.doctor.DoctorManagementException;
-import com.endava.doctorsapi.tables.general.EntityStates;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.endava.doctorsapi.tables.general.ControllerBase;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
 @RestController
 @RequestMapping("api/v1/address")
-public class AddressController {
+public class AddressController extends ControllerBase<Address,AddressRepo,AddressService> {
 
-	private final AddressService addressService;
-
-	@Autowired
 	public AddressController(AddressService addressService) {
-		this.addressService = addressService;
+		super(addressService);
 	}
 
 	@PostMapping()
@@ -30,7 +21,7 @@ public class AddressController {
 	                   @RequestParam(name = "postCode", required = false) Optional<String> postCode,
 	                   @RequestParam(name = "location", required = false) Optional<String> location) {
 
-		validateAndDo(addr, street, houseNumber, postCode, location, addressService::postAddress);
+		validateAndDo(addr, street, houseNumber, postCode, location, service::postAddress);
 	}
 
 	@PutMapping("/{id}")
@@ -41,48 +32,7 @@ public class AddressController {
 	                  @RequestParam(name = "postCode", required = false) Optional<String> postCode,
 	                  @RequestParam(name = "location", required = false) Optional<String> location) {
 
-		validateAndDo(addr, street, houseNumber, postCode, location, address -> addressService.putAddress(id, address));
-	}
-
-	@GetMapping("/{id}")
-	public Address onGet(@PathVariable(value = "id") Long id) {
-		if (id == null) {
-			throw new DoctorManagementException("Invalid param id is null");
-		}
-		return addressService.get(id);
-	}
-
-	@GetMapping()
-	public List<Address> onGetAll() {
-		return addressService.getAll();
-	}
-
-	@DeleteMapping("/{id}")
-	public void onDelete(@PathVariable(value = "id") Long id) {
-		if (id == null) {
-			throw new DoctorManagementException("Invalid param id is null");
-		}
-
-		if (addressService.get(id).getState().equals(EntityStates.DELETED.toString())) {
-			throw new DoctorManagementException("Cannot delete a doctor that is already in the state deleted");
-		}
-		addressService.delete(id);
-	}
-
-	@DeleteMapping()
-	public void onDeleteAll(@RequestBody(required = false) Optional<DeleteAllById> params) {
-		if (params.isPresent()) {
-			Iterator<Long> ids = Arrays.stream(params.get().ids()).iterator();
-			addressService.deleteAllById(new Iterable<Long>() {
-				@Override
-				public Iterator<Long> iterator() {
-					return ids;
-				}
-			});
-			return;
-		}
-
-		addressService.deleteAll();
+		validateAndDo(addr, street, houseNumber, postCode, location, address -> service.putAddress(id, address));
 	}
 
 	private void validateAndDo(Optional<Address> address,
@@ -131,9 +81,7 @@ public class AddressController {
 		}
 
 		throw new AddressManagementException("Please provide a RequestBody with street, houseNumber, postCode location or Query Params with them");
-
 	}
-
 }
 
 
