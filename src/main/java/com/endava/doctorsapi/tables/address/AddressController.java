@@ -1,8 +1,8 @@
-package com.endava.doctorsapi.tabels.address;
+package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.tabels.doctor.DeleteAllById;
-import com.endava.doctorsapi.tabels.doctor.DoctorManagementException;
-import com.endava.doctorsapi.tabels.general.EntityStates;
+import com.endava.doctorsapi.tables.doctor.DeleteAllById;
+import com.endava.doctorsapi.tables.doctor.DoctorManagementException;
+import com.endava.doctorsapi.tables.general.EntityStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

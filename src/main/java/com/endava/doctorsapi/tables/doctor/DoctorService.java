@@ -1,6 +1,6 @@
-package com.endava.doctorsapi.tabels.doctor;
+package com.endava.doctorsapi.tables.doctor;
 
-import com.endava.doctorsapi.tabels.general.EntityStates;
+import com.endava.doctorsapi.tables.general.EntityStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

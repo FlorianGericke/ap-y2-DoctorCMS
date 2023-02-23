@@ -1,4 +1,4 @@
-package com.endava.doctorsapi.tabels.general;
+package com.endava.doctorsapi.tables.general;
 
 import jakarta.persistence.*;
 
