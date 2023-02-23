@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddressService extends ServiceBase<Address, AddressRepo> {
+public class AddressService extends ServiceBase<Address,Long, AddressRepo> {
 
 	@Autowired
 	public AddressService(AddressRepo addressRepo) {

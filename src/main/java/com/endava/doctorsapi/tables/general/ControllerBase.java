@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-public class ControllerBase<Type extends EntityBase, Repo extends RepoBase<Type, Long>,Service extends ServiceBase<Type,Repo>> {
+public class ControllerBase<Type extends EntityBase, Repo extends RepoBase<Type, Long>,Service extends ServiceBase<Type,Long,Repo>> {
 	protected final Service service;
 
 	public ControllerBase(Service service ) {
