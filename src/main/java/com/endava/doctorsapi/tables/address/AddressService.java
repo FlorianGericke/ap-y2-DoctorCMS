@@ -1,14 +1,12 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.tables.general.EntityStates;
-import com.endava.doctorsapi.tables.general.ServiceBase;
+import com.endava.doctorsapi.tables.general.base.ServiceBase;
+import com.endava.doctorsapi.tables.general.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class AddressService extends ServiceBase<Address,Long, AddressRepo> {
+public class AddressService extends ServiceBase<Address, Long, AddressRepo> {
 
 	@Autowired
 	public AddressService(AddressRepo addressRepo) {
@@ -30,7 +28,7 @@ public class AddressService extends ServiceBase<Address,Long, AddressRepo> {
 	public void putAddress(Long id, String street, String houseNumber, int postCode, String location) {
 		Address addr = repo.findById(id)
 				.orElseThrow(() -> {
-					throw new AddressManagementException("id not found");
+					throw new ServiceException(this, "id not found");
 				});
 
 		addr.setStreet(street);

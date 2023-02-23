@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.tables.general.RepoBase;
+import com.endava.doctorsapi.tables.general.base.RepoBase;
 
 import java.util.List;
 

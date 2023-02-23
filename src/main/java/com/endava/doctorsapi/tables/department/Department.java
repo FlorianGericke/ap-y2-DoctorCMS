@@ -1,9 +1,7 @@
 package com.endava.doctorsapi.tables.department;
 
-import com.endava.doctorsapi.tables.general.EntityBase;
+import com.endava.doctorsapi.tables.general.base.EntityBase;
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "departments")

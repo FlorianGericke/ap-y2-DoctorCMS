@@ -1,5 +1,6 @@
-package com.endava.doctorsapi.tables.general;
+package com.endava.doctorsapi.tables.general.base;
 
+import com.endava.doctorsapi.tables.general.EntityStates;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

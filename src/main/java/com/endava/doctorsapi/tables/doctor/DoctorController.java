@@ -1,16 +1,10 @@
 package com.endava.doctorsapi.tables.doctor;
 
-import com.endava.doctorsapi.tables.address.Address;
-import com.endava.doctorsapi.tables.address.AddressManagementException;
-import com.endava.doctorsapi.tables.general.ControllerBase;
-import com.endava.doctorsapi.tables.general.DeleteAllById;
-import com.endava.doctorsapi.tables.general.EntityStates;
+import com.endava.doctorsapi.tables.general.base.ControllerBase;
+import com.endava.doctorsapi.tables.general.exceptions.ControllerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -28,7 +22,7 @@ public class DoctorController extends ControllerBase<Doctor, DoctorRepo, DoctorS
 	                   @RequestParam(name = "firstname", required = false) Optional<String> firstname,
 	                   @RequestParam(name = "lastname", required = false) Optional<String> lastname) {
 
-		validateAndDo(doc,firstname,lastname,service::postDoctor);
+		validateAndDo(doc, firstname, lastname, service::postDoctor);
 	}
 
 	@PutMapping("/{id}")
@@ -37,7 +31,7 @@ public class DoctorController extends ControllerBase<Doctor, DoctorRepo, DoctorS
 	                  @RequestParam(name = "firstname", required = false) Optional<String> firstname,
 	                  @RequestParam(name = "lastname", required = false) Optional<String> lastname) {
 
-		validateAndDo(doc,firstname,lastname, doctor -> service.put(id,doctor));
+		validateAndDo(doc, firstname, lastname, doctor -> service.put(id, doctor));
 	}
 
 	private void validateAndDo(Optional<Doctor> doc,
@@ -52,7 +46,7 @@ public class DoctorController extends ControllerBase<Doctor, DoctorRepo, DoctorS
 			if ((doc.get().getFirstName() == null || doc.get().getFirstName().length() < 3) ||
 					(doc.get().getLastName() == null || doc.get().getLastName().length() < 3)
 			) {
-				throw new DoctorManagementException("Please provide a first name and last name (minimum 3 chars)");
+				throw new ControllerException(this, "Please provide a first name and last name (minimum 3 chars)");
 			}
 
 			resolve.accept(doc.get());
@@ -66,13 +60,13 @@ public class DoctorController extends ControllerBase<Doctor, DoctorRepo, DoctorS
 			if (firstname.get().length() < 3 ||
 					lastname.get().length() < 3
 			) {
-				throw new DoctorManagementException("Please provide a first name and last name (minimum 3 chars)");
+				throw new ControllerException(this, "Please provide a first name and last name (minimum 3 chars)");
 			}
 
-			resolve.accept(new Doctor(firstname.get(),lastname.get()));
+			resolve.accept(new Doctor(firstname.get(), lastname.get()));
 			return;
 		}
 
-		throw new DoctorManagementException("Please provide a RequestBody firstname and lastname or Query Params with them");
+		throw new ControllerException(this, "Please provide a RequestBody firstname and lastname or Query Params with them");
 	}
 }
