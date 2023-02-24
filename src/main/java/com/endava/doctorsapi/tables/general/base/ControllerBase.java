@@ -2,6 +2,7 @@ package com.endava.doctorsapi.tables.general.base;
 
 
 import com.endava.doctorsapi.tables.general.exceptions.ControllerException;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-public class ControllerBase<Type extends EntityBase, Repo extends org.springframework.data.jpa.repository.JpaRepository<Type, Long>, Service extends ServiceBase<Type, Long, Repo>> {
+public class ControllerBase<Type extends EntityBase, Repo extends JpaRepository<Type, Long>, Service extends ServiceBase<Type, Long, Repo>> {
 	protected final Service service;
 
 	public ControllerBase(Service service) {
