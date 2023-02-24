@@ -6,7 +6,8 @@ servers:
   - url: http://localhost:8080
 tags:
   - name: Doctor
-  - name: Adress
+  - name: Address
+  - name: Department
 paths:
   /api/v1/doctors:
     post:
@@ -84,7 +85,7 @@ paths:
   /api/v1/address:
     post:
       tags:
-        - Adress
+        - Address
       summary: Adding new Address (body)
       requestBody:
         content:
@@ -103,7 +104,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Adress
+        - Address
       summary: GetAddress all
       responses:
         '200':
@@ -112,7 +113,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Adress
+        - Address
       summary: Delete all by Id
       responses:
         '200':
@@ -122,7 +123,7 @@ paths:
   /api/v1/address/29:
     put:
       tags:
-        - Adress
+        - Address
       summary: Updating a Address (body)
       requestBody:
         content:
@@ -141,7 +142,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Adress
+        - Address
       summary: GetAddress by Id
       responses:
         '200':
@@ -150,8 +151,95 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Adress
+        - Address
       summary: Delete by id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/department:
+    post:
+      tags:
+        - Department
+      summary: Adding new Department (body)
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n    \"name\":\"Orthopädie\"\n}"'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/departments/32:
+    put:
+      tags:
+        - Department
+      summary: Updating a Department (params)
+      requestBody:
+        content: {}
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: CoolDeparment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Department
+      summary: GetDepartment by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Department
+      summary: Delete Department by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/department/32:
+    put:
+      tags:
+        - Department
+      summary: Updating a Department (body)
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n    \"name\":\"SuperCoolDepartment\"\n}"'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/departments:
+    get:
+      tags:
+        - Department
+      summary: GetDepartment all
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Department
+      summary: Delete multiple Departments by ID
       responses:
         '200':
           description: Successful response
