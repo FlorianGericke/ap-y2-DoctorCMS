@@ -20,7 +20,6 @@ public class Department extends EntityBase {
 	}
 
 	public Department() {
-
 	}
 
 	public String getName() {
