@@ -32,7 +32,7 @@ public class EntityBase {
 
 	@PreUpdate
 	public void onPreUpdate() {
-		if(state.equals(EntityStates.DELETED.toString())){
+		if (state.equals(EntityStates.DELETED.toString())) {
 			return;
 		}
 		this.updatedAt = LocalDateTime.now();

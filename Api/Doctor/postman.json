@@ -3,7 +3,7 @@
 		"_postman_id": "8e9489c3-e2e0-4555-b68a-be90fec1a42f",
 		"name": "HeadLess-Spring-Aplication (DMS)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25646753"
+		"_exporter_id": "26034033"
 	},
 	"item": [
 		{
@@ -582,219 +582,18 @@
 			"name": "Department",
 			"item": [
 				{
-					"name": "Adding new Department (params)",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/department?name=Onkologie",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"department"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "Onkologie"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Adding new Department (body)",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\":\"Orthopädie\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/department",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"department"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Updating a Department (params)",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/departments/32?name=CoolDeparment",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"departments",
-								"32"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "CoolDeparment"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Updating a Department (body)",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\":\"SuperCoolDepartment\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/department/32",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"department",
-								"32"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetDepartment by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/departments/32",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"departments",
-								"32"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "GetDepartment all",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/departments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"departments"
-							]
-						}
+						"header": []
 					},
 					"response": []
 				},
 				{
-					"name": "Delete all Departments",
+					"name": "New Request",
 					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/departments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"departments"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Department by ID",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/departments/32",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"departments",
-								"32"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete multiple Departments by ID",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"ids\" : [32,33]\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/departments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"departments"
-							]
-						}
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
