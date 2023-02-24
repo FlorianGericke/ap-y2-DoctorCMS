@@ -1,9 +1,8 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.tables.general.base.RepoBase;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
-public interface AddressRepo extends RepoBase<Address,Long> {
+public interface AddressRepo extends JpaRepository<Address, Long> {
 	List<Address> findAllByStateIsNot(String state);
 }

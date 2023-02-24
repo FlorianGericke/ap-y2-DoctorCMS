@@ -6,7 +6,7 @@ import com.endava.doctorsapi.tables.general.exceptions.ServiceException;
 
 import java.util.List;
 
-public class ServiceBase<Type extends EntityBase, ID, Repo extends RepoBase<Type, ID>> {
+public class ServiceBase<Type extends EntityBase, ID, Repo extends org.springframework.data.jpa.repository.JpaRepository<Type, ID>> {
 	protected final Repo repo;
 
 	public ServiceBase(Repo repo) {
