@@ -10,7 +10,7 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "addresses")
-@SQLDelete(sql = "UPDATE doctors SET state = 'deleted', deleted_at = current_date WHERE id=?")
+@SQLDelete(sql = "UPDATE addresses SET state = 'deleted', deleted_at = current_date WHERE id=?")
 @Where(clause = "state IN ('created', 'updated')")
 public class Address extends EntityBase {
 
