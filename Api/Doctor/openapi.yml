@@ -6,6 +6,8 @@ servers:
   - url: http://localhost:8080
 tags:
   - name: Doctor
+  - name: Address
+  - name: Department
 paths:
   /api/v1/doctors:
     post:
@@ -75,6 +77,169 @@ paths:
       tags:
         - Doctor
       summary: Delete by id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/address:
+    post:
+      tags:
+        - Address
+      summary: Adding new Address (body)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                street: Musterstrasse
+                houseNumber: 1B
+                postCode: 11111
+                location: Musterhausen
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Address
+      summary: GetAddress all
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Address
+      summary: Delete all by Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/address/29:
+    put:
+      tags:
+        - Address
+      summary: Updating a Address (body)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                street: Alte
+                houseNumber: 1B
+                postCode: 11111
+                location: Bauer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Address
+      summary: GetAddress by Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Address
+      summary: Delete by id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/department:
+    post:
+      tags:
+        - Department
+      summary: Adding new Department (body)
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n    \"name\":\"Orthopädie\"\n}"'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/departments/32:
+    put:
+      tags:
+        - Department
+      summary: Updating a Department (params)
+      requestBody:
+        content: {}
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: CoolDeparment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Department
+      summary: GetDepartment by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Department
+      summary: Delete Department by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/department/32:
+    put:
+      tags:
+        - Department
+      summary: Updating a Department (body)
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n    \"name\":\"SuperCoolDepartment\"\n}"'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/departments:
+    get:
+      tags:
+        - Department
+      summary: GetDepartment all
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Department
+      summary: Delete multiple Departments by ID
       responses:
         '200':
           description: Successful response
