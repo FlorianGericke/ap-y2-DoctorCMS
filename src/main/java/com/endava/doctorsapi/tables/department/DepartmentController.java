@@ -89,6 +89,7 @@ public class DepartmentController {
 
 	@DeleteMapping("/{id}")
 	public void onDelete(@PathVariable(value = "id") Long id) {
+		System.out.println(id);
 		if (id == null) {
 			throw new CmsException("Invalid param id is null");
 		}
