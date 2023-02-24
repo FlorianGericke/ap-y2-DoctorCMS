@@ -2,9 +2,13 @@ package com.endava.doctorsapi.tables.doctor;
 
 import com.endava.doctorsapi.tables.general.base.EntityBase;
 import jakarta.persistence.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "doctors")
+@SQLDelete(sql = "UPDATE doctors SET state = 'deleted', deleted_at = current_date WHERE id=?")
+@Where(clause = "state IN ('created', 'updated')")
 public class Doctor extends EntityBase {
 	@Column(name = "first_name", nullable = false)
 	private String firstName;

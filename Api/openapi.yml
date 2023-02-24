@@ -6,7 +6,8 @@ servers:
   - url: http://localhost:8080
 tags:
   - name: Doctor
-  - name: Adress
+  - name: Address
+  - name: Department
 paths:
   /api/v1/doctors:
     post:
@@ -84,7 +85,7 @@ paths:
   /api/v1/address:
     post:
       tags:
-        - Adress
+        - Address
       summary: Adding new Address (body)
       requestBody:
         content:
@@ -103,7 +104,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Adress
+        - Address
       summary: GetAddress all
       responses:
         '200':
@@ -112,7 +113,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Adress
+        - Address
       summary: Delete all by Id
       responses:
         '200':
@@ -122,7 +123,7 @@ paths:
   /api/v1/address/29:
     put:
       tags:
-        - Adress
+        - Address
       summary: Updating a Address (body)
       requestBody:
         content:
@@ -141,7 +142,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Adress
+        - Address
       summary: GetAddress by Id
       responses:
         '200':
@@ -150,7 +151,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Adress
+        - Address
       summary: Delete by id
       responses:
         '200':
