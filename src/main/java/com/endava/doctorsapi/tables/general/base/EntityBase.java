@@ -1,5 +1,6 @@
-package com.endava.doctorsapi.tables.general;
+package com.endava.doctorsapi.tables.general.base;
 
+import com.endava.doctorsapi.tables.general.EntityStates;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -31,7 +32,7 @@ public class EntityBase {
 
 	@PreUpdate
 	public void onPreUpdate() {
-		if(state.equals(EntityStates.DELETED.toString())){
+		if (state.equals(EntityStates.DELETED.toString())) {
 			return;
 		}
 		this.updatedAt = LocalDateTime.now();
