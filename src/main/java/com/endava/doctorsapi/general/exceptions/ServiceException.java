@@ -1,6 +1,6 @@
-package com.endava.doctorsapi.tables.general.exceptions;
+package com.endava.doctorsapi.general.exceptions;
 
-import com.endava.doctorsapi.tables.general.base.ServiceBase;
+import com.endava.doctorsapi.general.base.ServiceBase;
 
 public class ServiceException extends CmsException{
 

@@ -1,7 +1,7 @@
-package com.endava.doctorsapi.tables.general.base;
+package com.endava.doctorsapi.general.base;
 
-import com.endava.doctorsapi.tables.general.EntityStates;
-import com.endava.doctorsapi.tables.general.exceptions.ServiceException;
+import com.endava.doctorsapi.general.EntityStates;
+import com.endava.doctorsapi.general.exceptions.ServiceException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
