@@ -5,98 +5,26 @@ info:
 servers:
   - url: http://localhost:8080
 tags:
-  - name: Doctor
   - name: Address
   - name: Department
+  - name: Doctor
+  - name: Facility
 paths:
-  /api/v1/doctors:
-    post:
-      tags:
-        - Doctor
-      summary: Adding new Doctor (body)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                firstName: Werner
-                lastName: Kessel
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Doctor
-      summary: GetDoctor all
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Doctor
-      summary: Delete all by Id
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/v1/doctors/1230:
-    put:
-      tags:
-        - Doctor
-      summary: Updating a Doctor (body)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                firstName: Peter
-                lastName: Pahn
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Doctor
-      summary: GetDoctor by Id
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/v1/doctors/1210:
-    delete:
-      tags:
-        - Doctor
-      summary: Delete by id
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /api/v1/address:
     post:
       tags:
         - Address
-      summary: Adding new Address (body)
+      summary: Adding new Address
       requestBody:
         content:
           application/json:
             schema:
               type: object
               example:
-                street: Musterstrasse
-                houseNumber: 1B
-                postCode: 11111
-                location: Musterhausen
+                street: neue
+                houseNumber: '420'
+                postCode: 14558
+                location: Feld
       responses:
         '200':
           description: Successful response
@@ -105,7 +33,7 @@ paths:
     get:
       tags:
         - Address
-      summary: GetAddress all
+      summary: Get all Addresses
       responses:
         '200':
           description: Successful response
@@ -114,17 +42,17 @@ paths:
     delete:
       tags:
         - Address
-      summary: Delete all by Id
+      summary: Delete multiple Addresses by ID
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/v1/address/29:
+  /api/v1/address/53:
     put:
       tags:
         - Address
-      summary: Updating a Address (body)
+      summary: Updating Address
       requestBody:
         content:
           application/json:
@@ -143,16 +71,17 @@ paths:
     get:
       tags:
         - Address
-      summary: GetAddress by Id
+      summary: Get Address by ID
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
+  /api/v1/address/29:
     delete:
       tags:
         - Address
-      summary: Delete by id
+      summary: Delete Address by ID
       responses:
         '200':
           description: Successful response
@@ -162,31 +91,14 @@ paths:
     post:
       tags:
         - Department
-      summary: Adding new Department (body)
+      summary: Adding new Department
       requestBody:
         content:
-          '*/*':
+          application/json:
             schema:
-              type: string
-              example: '"{\n    \"name\":\"Orthopädie\"\n}"'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/v1/departments/32:
-    put:
-      tags:
-        - Department
-      summary: Updating a Department (params)
-      requestBody:
-        content: {}
-      parameters:
-        - name: name
-          in: query
-          schema:
-            type: string
-          example: CoolDeparment
+              type: object
+              example:
+                name: NeuenNeu D
       responses:
         '200':
           description: Successful response
@@ -195,42 +107,7 @@ paths:
     get:
       tags:
         - Department
-      summary: GetDepartment by ID
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Department
-      summary: Delete Department by ID
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/v1/department/32:
-    put:
-      tags:
-        - Department
-      summary: Updating a Department (body)
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              type: string
-              example: '"{\n    \"name\":\"SuperCoolDepartment\"\n}"'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/v1/departments:
-    get:
-      tags:
-        - Department
-      summary: GetDepartment all
+      summary: Get all Departments
       responses:
         '200':
           description: Successful response
@@ -240,6 +117,167 @@ paths:
       tags:
         - Department
       summary: Delete multiple Departments by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/department/65:
+    put:
+      tags:
+        - Department
+      summary: Updating Department
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: SuperCoolDepartment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Department
+      summary: Get Department by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/department/129:
+    delete:
+      tags:
+        - Department
+      summary: Delete Department by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/doctor:
+    post:
+      tags:
+        - Doctor
+      summary: Adding new Doctor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: Werner
+                lastName: Kessel
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Doctor
+      summary: Get all Doctors
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Doctor
+      summary: Delete multiple Doctors by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/doctor/1293:
+    put:
+      tags:
+        - Doctor
+      summary: Updating Doctor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: Peter
+                lastName: Pahn
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Doctor
+      summary: Get Doctor by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/doctor/1210:
+    delete:
+      tags:
+        - Doctor
+      summary: Delete Doctor by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/facility:
+    post:
+      tags:
+        - Facility
+      summary: Adding new Facility
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: TestFacility2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Facility
+      summary: Get all Facilities
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Facility
+      summary: Delete multiple Facilities by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/facility/177647:
+    put:
+      tags:
+        - Facility
+      summary: Updating Facility
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Cooles Neues Facility
       responses:
         '200':
           description: Successful response

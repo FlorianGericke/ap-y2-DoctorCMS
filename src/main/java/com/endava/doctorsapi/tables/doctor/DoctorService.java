@@ -22,11 +22,11 @@ public class DoctorService extends ServiceBase<Doctor, Long, DoctorRepo> {
 		repo.save(new Doctor(firstName, lastName));
 	}
 
-	public void put(Long id, Doctor doc) {
-		this.put(id, doc.getFirstName(), doc.getLastName());
+	public void putDoctor(Long id, Doctor doc) {
+		this.putDoctor(id, doc.getFirstName(), doc.getLastName());
 	}
 
-	public void put(Long id, String firstName, String lastName) {
+	public void putDoctor(Long id, String firstName, String lastName) {
 		Doctor doc = repo.findById(id)
 				.orElseThrow(() -> {
 					throw new ServiceException(this, "id not found");
