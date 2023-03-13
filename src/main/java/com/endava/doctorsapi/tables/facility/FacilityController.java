@@ -1,6 +1,7 @@
 package com.endava.doctorsapi.tables.facility;
 
 import com.endava.doctorsapi.tables.department.Department;
+import com.endava.doctorsapi.tables.general.EntityStates;
 import com.endava.doctorsapi.tables.general.base.ControllerBase;
 import com.endava.doctorsapi.tables.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,28 @@ public class FacilityController extends ControllerBase<Facility, FacilityRepo, F
 		}
 
 		service.postFacility(facility.get());
+	}
+
+	@PutMapping("/{id}")
+	public void onPut(@PathVariable(value = "id") Long id,
+	                  @RequestBody() Optional<Facility> facility) {
+
+		if (id == null) {
+			throw new CmsException("Invalid param id is null");
+		}
+
+		if (facility.isEmpty()) {
+			throw new CmsException("Please provide a RequestBody withe attribute name");
+		}
+
+		if (service.get(id).getState().equals(EntityStates.DELETED.toString())) {
+			throw new CmsException("Cannot change a deleted object");
+		}
+
+		if (facility.get().getName() == null || facility.get().getName().length() < 2) {
+			throw new CmsException("Please provide a name (minimum 2 chars)");
+		}
+		service.put(id, facility.get());
 	}
 
 }
