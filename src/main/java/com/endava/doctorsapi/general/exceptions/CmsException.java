@@ -1,4 +1,4 @@
-package com.endava.doctorsapi.tables.general.exceptions;
+package com.endava.doctorsapi.general.exceptions;
 
 public class CmsException extends RuntimeException{
 	public CmsException(String message) {

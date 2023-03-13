@@ -1,7 +1,7 @@
-package com.endava.doctorsapi.tables.general.base;
+package com.endava.doctorsapi.general.base;
 
 
-import com.endava.doctorsapi.tables.general.exceptions.ControllerException;
+import com.endava.doctorsapi.general.exceptions.ControllerException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.tables.general.base.ControllerBase;
-import com.endava.doctorsapi.tables.general.exceptions.ControllerException;
+import com.endava.doctorsapi.general.base.ControllerBase;
+import com.endava.doctorsapi.general.exceptions.ControllerException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
