@@ -1,9 +1,8 @@
 package com.endava.doctorsapi.tables.facility;
 
-import com.endava.doctorsapi.tables.department.Department;
-import com.endava.doctorsapi.tables.general.EntityStates;
-import com.endava.doctorsapi.tables.general.base.ControllerBase;
-import com.endava.doctorsapi.tables.general.exceptions.CmsException;
+import com.endava.doctorsapi.general.EntityStates;
+import com.endava.doctorsapi.general.base.ControllerBase;
+import com.endava.doctorsapi.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
