@@ -29,7 +29,7 @@ public class DoctorController extends ControllerBase<Doctor, DoctorRepo, DoctorS
 		}
 
 		validate(doctor);
-		service.put(id,doctor.get());
+		service.putDoctor(id,doctor.get());
 	}
 
 	private void validate(Optional<Doctor> doctor) {

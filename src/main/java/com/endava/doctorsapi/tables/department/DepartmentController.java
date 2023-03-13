@@ -30,7 +30,7 @@ public class DepartmentController extends ControllerBase<Department, DepartmentR
 		}
 
 		validate(department);
-		service.put(id, department.get());
+		service.putDepartment(id, department.get());
 	}
 
 	private void validate(Optional<Department> department) {
