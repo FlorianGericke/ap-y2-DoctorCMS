@@ -4,6 +4,7 @@ package com.endava.doctorsapi.tables.department;
 import com.endava.doctorsapi.tables.general.base.ServiceBase;
 import com.endava.doctorsapi.tables.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +26,7 @@ public class DepartmentService extends ServiceBase<Department, Long, DepartmentR
 	public void put(Long id, String name) {
 		Department department = repo.findById(id)
 				.orElseThrow(() -> {
-					throw new CmsException("id not found");
+					throw new CmsException(HttpStatus.valueOf(404), "id not found");
 				});
 		department.setName(name);
 		repo.save(department);

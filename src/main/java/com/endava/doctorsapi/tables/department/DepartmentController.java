@@ -4,6 +4,7 @@ import com.endava.doctorsapi.tables.general.EntityStates;
 import com.endava.doctorsapi.tables.general.base.ControllerBase;
 import com.endava.doctorsapi.tables.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,7 +24,7 @@ public class DepartmentController extends ControllerBase<Department, DepartmentR
 	                   @RequestParam(name = "name", required = false) Optional<String> name) {
 		if (department.isPresent() && name.isEmpty()) {
 			if (department.get().getName() == null || department.get().getName().length() < 2) {
-				throw new CmsException("Please provide a name (minimum 2 chars)");
+				throw new CmsException(HttpStatus.valueOf(404), "Please provide a name (minimum 2 chars)");
 			}
 			service.postDepartment(department.get());
 			return;
@@ -31,13 +32,13 @@ public class DepartmentController extends ControllerBase<Department, DepartmentR
 
 		if (department.isEmpty() && name.isPresent()) {
 			if (name.get().length() < 2) {
-				throw new CmsException("Please provide a name (minimum 2 chars)");
+				throw new CmsException(HttpStatus.valueOf(404), "Please provide a name (minimum 2 chars)");
 			}
 			service.postDepartment(name.get());
 			return;
 		}
 
-		throw new CmsException("Please provide a RequestBody name or Query Params with it");
+		throw new CmsException(HttpStatus.valueOf(404), "Please provide a RequestBody name or Query Params with it");
 	}
 
 	@PutMapping("/{id}")
@@ -45,15 +46,15 @@ public class DepartmentController extends ControllerBase<Department, DepartmentR
 	                  @RequestBody(required = false) Optional<Department> department,
 	                  @RequestParam(name = "name", required = false) Optional<String> name) {
 		if (id == null) {
-			throw new CmsException("Invalid param id is null");
+			throw new CmsException(HttpStatus.valueOf(404), "Invalid param id is null");
 		}
 
 		if (department.isEmpty() && name.isPresent()) {
 			if (service.get(id).getState().equals(EntityStates.DELETED.toString())) {
-				throw new CmsException("Cannot change a deleted object");
+				throw new CmsException(HttpStatus.valueOf(404), "Cannot change a deleted object");
 			}
 			if (name.get().length() < 2) {
-				throw new CmsException("Please provide a name (minimum 2 chars)");
+				throw new CmsException(HttpStatus.valueOf(404), "Please provide a name (minimum 2 chars)");
 			}
 			service.put(id, name.get());
 			return;
@@ -67,6 +68,6 @@ public class DepartmentController extends ControllerBase<Department, DepartmentR
 			return;
 		}
 
-		throw new CmsException("Please provide a RequestBody name or Query Params with it");
+		throw new CmsException(HttpStatus.valueOf(404), "Please provide a RequestBody name or Query Params with it");
 	}
 }
