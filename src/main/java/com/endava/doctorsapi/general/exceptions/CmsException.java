@@ -1,7 +1,16 @@
 package com.endava.doctorsapi.general.exceptions;
 
-public class CmsException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+public class CmsException extends ResponseStatusException {
+
 	public CmsException(String message) {
-		super(message);
+		this(HttpStatus.valueOf(500), message);
 	}
+
+	public CmsException(HttpStatus status, String message) {
+		super(status, message);
+	}
+
 }
