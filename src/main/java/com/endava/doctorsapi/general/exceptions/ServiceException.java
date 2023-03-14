@@ -1,7 +1,6 @@
-package com.endava.doctorsapi.tables.general.exceptions;
+package com.endava.doctorsapi.general.exceptions;
 
-import com.endava.doctorsapi.tables.general.base.ControllerBase;
-import com.endava.doctorsapi.tables.general.base.ServiceBase;
+import com.endava.doctorsapi.general.base.ServiceBase;
 import org.springframework.http.HttpStatus;
 
 public class ServiceException extends CmsException{

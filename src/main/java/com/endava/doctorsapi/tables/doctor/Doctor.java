@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.tables.doctor;
 
-import com.endava.doctorsapi.tables.general.base.EntityBase;
+import com.endava.doctorsapi.general.base.EntityBase;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;

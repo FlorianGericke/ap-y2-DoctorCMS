@@ -1,8 +1,8 @@
 package com.endava.doctorsapi.tables.department;
 
 
-import com.endava.doctorsapi.tables.general.base.ServiceBase;
-import com.endava.doctorsapi.tables.general.exceptions.CmsException;
+import com.endava.doctorsapi.general.base.ServiceBase;
+import com.endava.doctorsapi.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class DepartmentService extends ServiceBase<Department, Long, DepartmentR
 		this.postDepartment(department.getName());
 	}
 
-	public void put(Long id, String name) {
+	public void putDepartment(Long id, String name) {
 		Department department = repo.findById(id)
 				.orElseThrow(() -> {
 					throw new CmsException(HttpStatus.valueOf(404), "id not found");
@@ -32,7 +32,7 @@ public class DepartmentService extends ServiceBase<Department, Long, DepartmentR
 		repo.save(department);
 	}
 
-	public void put(Long id, Department department) {
-		this.put(id, department.getName());
+	public void putDepartment(Long id, Department department) {
+		this.putDepartment(id, department.getName());
 	}
 }

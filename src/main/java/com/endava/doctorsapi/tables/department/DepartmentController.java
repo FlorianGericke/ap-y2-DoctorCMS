@@ -1,17 +1,15 @@
 package com.endava.doctorsapi.tables.department;
 
-import com.endava.doctorsapi.tables.general.EntityStates;
-import com.endava.doctorsapi.tables.general.base.ControllerBase;
-import com.endava.doctorsapi.tables.general.exceptions.CmsException;
+import com.endava.doctorsapi.general.base.ControllerBase;
+import com.endava.doctorsapi.general.exceptions.ControllerException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 
 @RestController
-@RequestMapping("api/v1/departments")
+@RequestMapping("api/v1/department")
 public class DepartmentController extends ControllerBase<Department, DepartmentRepo, DepartmentService> {
 
 	@Autowired
@@ -20,54 +18,28 @@ public class DepartmentController extends ControllerBase<Department, DepartmentR
 	}
 
 	@PostMapping()
-	public void onPost(@RequestBody(required = false) Optional<Department> department,
-	                   @RequestParam(name = "name", required = false) Optional<String> name) {
-		if (department.isPresent() && name.isEmpty()) {
-			if (department.get().getName() == null || department.get().getName().length() < 2) {
-				throw new CmsException(HttpStatus.valueOf(404), "Please provide a name (minimum 2 chars)");
-			}
-			service.postDepartment(department.get());
-			return;
-		}
-
-		if (department.isEmpty() && name.isPresent()) {
-			if (name.get().length() < 2) {
-				throw new CmsException(HttpStatus.valueOf(404), "Please provide a name (minimum 2 chars)");
-			}
-			service.postDepartment(name.get());
-			return;
-		}
-
-		throw new CmsException(HttpStatus.valueOf(404), "Please provide a RequestBody name or Query Params with it");
+	public void onPost(@RequestBody() Optional<Department> department) {
+		validate(department);
+		service.postDepartment(department.get());
 	}
 
 	@PutMapping("/{id}")
-	public void onPut(@PathVariable(value = "id") Long id,
-	                  @RequestBody(required = false) Optional<Department> department,
-	                  @RequestParam(name = "name", required = false) Optional<String> name) {
+	public void onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Department> department) {
 		if (id == null) {
-			throw new CmsException(HttpStatus.valueOf(404), "Invalid param id is null");
+			throw new ControllerException(this, "Invalid param id is null");
 		}
 
-		if (department.isEmpty() && name.isPresent()) {
-			if (service.get(id).getState().equals(EntityStates.DELETED.toString())) {
-				throw new CmsException(HttpStatus.valueOf(404), "Cannot change a deleted object");
-			}
-			if (name.get().length() < 2) {
-				throw new CmsException(HttpStatus.valueOf(404), "Please provide a name (minimum 2 chars)");
-			}
-			service.put(id, name.get());
-			return;
+		validate(department);
+		service.putDepartment(id, department.get());
+	}
+
+	private void validate(Optional<Department> department) {
+		if (department.isEmpty()) {
+			throw new ControllerException(this, "Please provide a RequestBody withe attribute name");
 		}
 
-		if (department.isPresent() && name.isEmpty()) {
-			if (department.get().getName() == null || department.get().getName().length() < 2) {
-				throw new CmsException("Please provide a name (minimum 2 chars)");
-			}
-			service.put(id, department.get().getName());
-			return;
+		if ((department.get().getName() == null || department.get().getName().length() < 3)) {
+			throw new ControllerException(this, "Please provide a name in RequestBody (min 2 chars)");
 		}
-
-		throw new CmsException(HttpStatus.valueOf(404), "Please provide a RequestBody name or Query Params with it");
 	}
 }

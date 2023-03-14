@@ -1,7 +1,7 @@
 package com.endava.doctorsapi.tables.doctor;
 
-import com.endava.doctorsapi.tables.general.base.ServiceBase;
-import com.endava.doctorsapi.tables.general.exceptions.ServiceException;
+import com.endava.doctorsapi.general.base.ServiceBase;
+import com.endava.doctorsapi.general.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +22,11 @@ public class DoctorService extends ServiceBase<Doctor, Long, DoctorRepo> {
 		repo.save(new Doctor(firstName, lastName));
 	}
 
-	public void put(Long id, Doctor doc) {
-		this.put(id, doc.getFirstName(), doc.getLastName());
+	public void putDoctor(Long id, Doctor doc) {
+		this.putDoctor(id, doc.getFirstName(), doc.getLastName());
 	}
 
-	public void put(Long id, String firstName, String lastName) {
+	public void putDoctor(Long id, String firstName, String lastName) {
 		Doctor doc = repo.findById(id)
 				.orElseThrow(() -> {
 					throw new ServiceException(this, "id not found");

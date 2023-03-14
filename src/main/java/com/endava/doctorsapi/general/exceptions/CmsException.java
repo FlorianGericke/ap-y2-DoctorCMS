@@ -1,4 +1,4 @@
-package com.endava.doctorsapi.tables.general.exceptions;
+package com.endava.doctorsapi.general.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

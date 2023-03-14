@@ -1,25 +1,26 @@
-package com.endava.doctorsapi.tables.department;
+package com.endava.doctorsapi.tables.facility;
 
 import com.endava.doctorsapi.general.base.EntityBase;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Table(name = "departments")
-@SQLDelete(sql = "UPDATE departments SET state = 'deleted', deleted_at = current_date WHERE id=?")
+@Table(name = "facilities")
+@SQLDelete(sql = "UPDATE facilities SET state = 'deleted', deleted_at = current_date WHERE id=?")
 @Where(clause = "state IN ('created', 'updated')")
-public class Department extends EntityBase {
+public class Facility extends EntityBase {
 
 	@Column(name = "name", nullable = false)
 	private String name;
 
-
-	public Department(String name) {
+	public Facility(String name) {
 		this.name = name;
 	}
 
-	public Department() {
+	public Facility() {
 	}
 
 	public String getName() {
@@ -30,10 +31,9 @@ public class Department extends EntityBase {
 		this.name = name;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Department{" +
+		return "Facility{" +
 				"name='" + name + '\'' +
 				", id=" + id +
 				", createdAt=" + createdAt +
