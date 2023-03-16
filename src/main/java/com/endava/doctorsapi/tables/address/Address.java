@@ -1,11 +1,14 @@
 package com.endava.doctorsapi.tables.address;
 
 import com.endava.doctorsapi.general.base.EntityBase;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.endava.doctorsapi.tables.facility.Facility;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -26,6 +29,10 @@ public class Address extends EntityBase {
 	@Column(name = "location", nullable = false)
 	private String location;
 
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "addresses", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Facility> facilities = new HashSet<>();
 
 	public Address(String street, String houseNumber, int postCode, String location) {
 		this.street = street;
@@ -69,6 +76,10 @@ public class Address extends EntityBase {
 		return location;
 	}
 
+	public Set<Facility> getFacilities() {
+		return facilities;
+	}
+
 	@Override
 	public String toString() {
 		return "Adresse{" +
@@ -82,5 +93,9 @@ public class Address extends EntityBase {
 				", deletedAt=" + deletedAt +
 				", state='" + state + '\'' +
 				'}';
+	}
+
+	public void assignFacility(Facility facility) {
+		facilities.add(facility);
 	}
 }
