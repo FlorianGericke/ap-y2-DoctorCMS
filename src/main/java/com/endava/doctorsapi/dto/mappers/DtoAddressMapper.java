@@ -1,11 +1,8 @@
 package com.endava.doctorsapi.dto.mappers;
 
 import com.endava.doctorsapi.dto.response.AddressResponse;
-import com.endava.doctorsapi.dto.response.DoctorResponse;
 import com.endava.doctorsapi.dto.response.FacilityResponse;
 import com.endava.doctorsapi.tables.address.Address;
-import com.endava.doctorsapi.tables.doctor.Doctor;
-import com.endava.doctorsapi.tables.facility.Facility;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
@@ -22,7 +19,7 @@ public class DtoAddressMapper implements Function<Address, AddressResponse> {
 				address.getPostCode(),
 				address.getFacilities()
 						.stream()
-						.map(facility -> new FacilityResponse(facility.getId(), facility.getName(),null))
+						.map(facility -> new FacilityResponse(facility.getId(), facility.getName(), null))
 						.collect(Collectors.toSet()));
 	}
 }

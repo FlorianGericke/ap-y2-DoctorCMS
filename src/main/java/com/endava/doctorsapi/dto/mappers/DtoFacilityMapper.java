@@ -1,9 +1,7 @@
 package com.endava.doctorsapi.dto.mappers;
 
 import com.endava.doctorsapi.dto.response.AddressResponse;
-import com.endava.doctorsapi.dto.response.DoctorResponse;
 import com.endava.doctorsapi.dto.response.FacilityResponse;
-import com.endava.doctorsapi.tables.doctor.Doctor;
 import com.endava.doctorsapi.tables.facility.Facility;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
 package com.endava.doctorsapi.general.base;
 
-
 import com.endava.doctorsapi.general.exceptions.ControllerException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +29,11 @@ public class BaseController<Type extends BaseEntity, Service extends BaseService
 		if (id == null) {
 			throw new ControllerException(this, "Invalid param id is null");
 		}
-		return new ResponseEntity<>(mapper.apply(service.get(id)), HttpStatus.OK) ;
+		return new ResponseEntity<>(mapper.apply(service.get(id)), HttpStatus.OK);
 	}
 
 	@GetMapping()
-	protected  ResponseEntity<List<Response>> onGetAll() {
+	protected ResponseEntity<List<Response>> onGetAll() {
 		return new ResponseEntity<>(service.getAll().stream().map(mapper).toList(), HttpStatus.OK);
 	}
 
@@ -50,9 +49,9 @@ public class BaseController<Type extends BaseEntity, Service extends BaseService
 	protected ResponseEntity<List<Response>> onDeleteAll(@RequestBody(required = false) Optional<DeleteAllById> params) {
 		if (params.isPresent()) {
 			Iterator<Long> ids = Arrays.stream(params.get().ids()).iterator();
-			return new ResponseEntity<>(service.deleteAllById(() -> ids).stream().map(mapper).toList(),HttpStatus.OK);
+			return new ResponseEntity<>(service.deleteAllById(() -> ids).stream().map(mapper).toList(), HttpStatus.OK);
 		}
 
-		return new ResponseEntity<>(service.deleteAll().stream().map(mapper).toList(),HttpStatus.OK);
+		return new ResponseEntity<>(service.deleteAll().stream().map(mapper).toList(), HttpStatus.OK);
 	}
 }

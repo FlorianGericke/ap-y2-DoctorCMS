@@ -38,7 +38,6 @@ public class AddressService extends BaseService<Address, AddressRepo> {
 		addr.setHouseNumber(houseNumber);
 		addr.setPostCode(postCode);
 		addr.setLocation(location);
-		repo.save(addr);
-		return addr;
+		return repo.save(addr);
 	}
 }

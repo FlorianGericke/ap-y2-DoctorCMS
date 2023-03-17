@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class BaseService<Type extends BaseEntity, Repo extends JpaRepository<Type, Long>> {
