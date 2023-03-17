@@ -5,6 +5,8 @@ import com.endava.doctorsapi.dto.response.AddressResponse;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -18,20 +20,20 @@ public class AddressController extends BaseController<Address, AddressService, A
 	}
 
 	@PostMapping()
-	public void onPost(@RequestBody() Optional<Address> address) {
+	public ResponseEntity<AddressResponse> onPost(@RequestBody() Optional<Address> address) {
 		validate(address);
-		service.postAddress(address.get());
+		return new ResponseEntity<>(mapper.apply(service.postAddress(address.get())),HttpStatus.OK);
 	}
 
 
 	@PutMapping("/{id}")
-	public void onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Address> address) {
+	public ResponseEntity<AddressResponse> onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Address> address) {
 		if (id == null) {
 			throw new CmsException("Invalid param id is null");
 		}
 
 		validate(address);
-		service.putAddress(id, address.get());
+		return new ResponseEntity<>(mapper.apply(service.putAddress(id, address.get())),HttpStatus.OK);
 	}
 
 	private void validate(Optional<Address> address) {
