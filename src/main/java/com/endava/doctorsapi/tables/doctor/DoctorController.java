@@ -5,6 +5,8 @@ import com.endava.doctorsapi.dto.response.DoctorResponse;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -19,19 +21,20 @@ public class DoctorController extends BaseController<Doctor,DoctorService, Docto
 	}
 
 	@PostMapping()
-	public void onPost(@RequestBody(required = false) Optional<Doctor> doctor) {
+	public ResponseEntity<DoctorResponse> onPost(@RequestBody(required = false) Optional<Doctor> doctor) {
 		validate(doctor);
-		service.postDoctor(doctor.get());
+		return new ResponseEntity<>(mapper.apply(service.postDoctor(doctor.get())), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public void onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Doctor> doctor) {
+	public  ResponseEntity<DoctorResponse> onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Doctor> doctor) {
 		if (id == null) {
 			throw new CmsException("Invalid param id is null");
 		}
 
 		validate(doctor);
-		service.putDoctor(id,doctor.get());
+		return new ResponseEntity<>(mapper.apply(service.putDoctor(id,doctor.get())), HttpStatus.OK);
+
 	}
 
 	private void validate(Optional<Doctor> doctor) {
