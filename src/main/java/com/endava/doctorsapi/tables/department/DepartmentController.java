@@ -1,5 +1,7 @@
 package com.endava.doctorsapi.tables.department;
 
+import com.endava.doctorsapi.dto.mappers.DtoDepartmentMapper;
+import com.endava.doctorsapi.dto.response.DepartmentResponse;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/department")
-public class DepartmentController extends BaseController<Department, DepartmentService> {
+public class DepartmentController extends BaseController<Department, DepartmentService, DepartmentResponse, DtoDepartmentMapper> {
 
 	@Autowired
-	public DepartmentController(DepartmentService departmentService) {
-		super(departmentService);
+	public DepartmentController(DepartmentService departmentService, DtoDepartmentMapper departmentMapper) {
+		super(departmentService,departmentMapper);
 	}
 
 	@PostMapping()

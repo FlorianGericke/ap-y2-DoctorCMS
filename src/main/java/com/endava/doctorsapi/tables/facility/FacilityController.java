@@ -1,5 +1,7 @@
 package com.endava.doctorsapi.tables.facility;
 
+import com.endava.doctorsapi.dto.mappers.DtoFacilityMapper;
+import com.endava.doctorsapi.dto.response.FacilityResponse;
 import com.endava.doctorsapi.general.EntityStates;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
@@ -10,11 +12,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/facility")
-public class FacilityController extends BaseController<Facility, FacilityService> {
+public class FacilityController extends BaseController<Facility, FacilityService, FacilityResponse, DtoFacilityMapper> {
 
 	@Autowired
-	public FacilityController(FacilityService facilityService) {
-		super(facilityService);
+	public FacilityController(FacilityService facilityService, DtoFacilityMapper mapper) {
+		super(facilityService, mapper);
 	}
 
 	@PostMapping()

@@ -1,5 +1,7 @@
 package com.endava.doctorsapi.tables.address;
 
+import com.endava.doctorsapi.dto.mappers.DtoAddressMapper;
+import com.endava.doctorsapi.dto.response.AddressResponse;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
@@ -9,10 +11,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/address")
-public class AddressController extends BaseController<Address, AddressService> {
+public class AddressController extends BaseController<Address, AddressService, AddressResponse, DtoAddressMapper> {
 
-	public AddressController(AddressService addressService) {
-		super(addressService);
+	public AddressController(AddressService addressService, DtoAddressMapper addressMapper) {
+		super(addressService,addressMapper);
 	}
 
 	@PostMapping()

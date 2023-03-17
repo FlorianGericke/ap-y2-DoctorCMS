@@ -2,6 +2,8 @@ package com.endava.doctorsapi.general.base;
 
 
 import com.endava.doctorsapi.general.exceptions.ControllerException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,43 +13,46 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
-public class BaseController<Type extends BaseEntity,Service extends BaseService<Type, ?>> {
+public class BaseController<Type extends BaseEntity, Service extends BaseService<Type, ?>, Response, Mapper extends Function<Type, Response>> {
 	protected final Service service;
 
-	public BaseController(Service service) {
+	protected final Mapper mapper;
+
+	public BaseController(Service service, Mapper mapper) {
 		this.service = service;
+		this.mapper = mapper;
 	}
 
 	@GetMapping("/{id}")
-	protected Type onGet(@PathVariable(value = "id") Long id) {
+	protected ResponseEntity<Response> onGet(@PathVariable(value = "id") Long id) {
 		if (id == null) {
 			throw new ControllerException(this, "Invalid param id is null");
 		}
-		return service.get(id);
+		return new ResponseEntity<>(mapper.apply(service.get(id)), HttpStatus.OK) ;
 	}
 
 	@GetMapping()
-	protected List<Type> onGetAll() {
-		return service.getAll();
+	protected  ResponseEntity<List<Response>> onGetAll() {
+		return new ResponseEntity<>(service.getAll().stream().map(mapper).toList(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	protected void onDelete(@PathVariable(value = "id") Long id) {
+	protected ResponseEntity<Response> onDelete(@PathVariable(value = "id") Long id) {
 		if (id == null) {
 			throw new ControllerException(this, "Invalid param id is null");
 		}
-		service.delete(id);
+		return new ResponseEntity<>(mapper.apply(service.delete(id)), HttpStatus.OK);
 	}
 
 	@DeleteMapping()
-	protected void onDeleteAll(@RequestBody(required = false) Optional<DeleteAllById> params) {
+	protected ResponseEntity<List<Response>> onDeleteAll(@RequestBody(required = false) Optional<DeleteAllById> params) {
 		if (params.isPresent()) {
 			Iterator<Long> ids = Arrays.stream(params.get().ids()).iterator();
-			service.deleteAllById(() -> ids);
-			return;
+			return new ResponseEntity<>(service.deleteAllById(() -> ids).stream().map(mapper).toList(),HttpStatus.OK);
 		}
 
-		service.deleteAll();
+		return new ResponseEntity<>(service.deleteAll().stream().map(mapper).toList(),HttpStatus.OK);
 	}
 }
