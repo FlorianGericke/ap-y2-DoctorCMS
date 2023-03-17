@@ -1,14 +1,14 @@
 package com.endava.doctorsapi.tables.department;
 
 
-import com.endava.doctorsapi.general.base.ServiceBase;
+import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DepartmentService extends ServiceBase<Department, Long, DepartmentRepo> {
+public class DepartmentService extends BaseService<Department, DepartmentRepo> {
 
 	@Autowired
 	public DepartmentService(DepartmentRepo departmentRepo) {

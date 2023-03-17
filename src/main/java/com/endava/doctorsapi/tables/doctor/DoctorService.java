@@ -1,13 +1,13 @@
 package com.endava.doctorsapi.tables.doctor;
 
-import com.endava.doctorsapi.general.base.ServiceBase;
+import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class DoctorService extends ServiceBase<Doctor, Long, DoctorRepo> {
+public class DoctorService extends BaseService<Doctor, DoctorRepo> {
 
 	@Autowired
 	public DoctorService(DoctorRepo doctorRepo) {

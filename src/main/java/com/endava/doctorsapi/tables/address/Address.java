@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.general.base.EntityBase;
+import com.endava.doctorsapi.general.base.BaseEntity;
 import com.endava.doctorsapi.tables.facility.Facility;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -15,7 +15,7 @@ import java.util.Set;
 @Table(name = "addresses")
 @SQLDelete(sql = "UPDATE addresses SET state = 'deleted', deleted_at = current_date WHERE id=?")
 @Where(clause = "state IN ('created', 'updated')")
-public class Address extends EntityBase {
+public class Address extends BaseEntity {
 
 	@Column(name = "street", nullable = false)
 	private String street;

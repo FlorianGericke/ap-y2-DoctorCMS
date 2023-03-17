@@ -1,7 +1,7 @@
 package com.endava.doctorsapi.tables.facility;
 
 import com.endava.doctorsapi.general.EntityStates;
-import com.endava.doctorsapi.general.base.ControllerBase;
+import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/facility")
-public class FacilityController extends ControllerBase<Facility, FacilityRepo, FacilityService> {
+public class FacilityController extends BaseController<Facility, FacilityService> {
 
 	@Autowired
 	public FacilityController(FacilityService facilityService) {

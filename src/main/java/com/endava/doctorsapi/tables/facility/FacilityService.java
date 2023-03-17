@@ -1,12 +1,12 @@
 package com.endava.doctorsapi.tables.facility;
 
-import com.endava.doctorsapi.general.base.ServiceBase;
+import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FacilityService extends ServiceBase<Facility, Long, FacilityRepo> {
+public class FacilityService extends BaseService<Facility, FacilityRepo> {
 
 	@Autowired
 	public FacilityService(FacilityRepo facilityRepo) {

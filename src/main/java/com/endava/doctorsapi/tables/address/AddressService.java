@@ -1,12 +1,12 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.general.base.ServiceBase;
+import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddressService extends ServiceBase<Address, Long, AddressRepo> {
+public class AddressService extends BaseService<Address, AddressRepo> {
 
 	@Autowired
 	public AddressService(AddressRepo addressRepo) {

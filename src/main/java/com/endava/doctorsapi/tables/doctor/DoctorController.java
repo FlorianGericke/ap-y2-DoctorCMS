@@ -1,16 +1,15 @@
 package com.endava.doctorsapi.tables.doctor;
 
-import com.endava.doctorsapi.general.base.ControllerBase;
+import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/doctor")
-public class DoctorController extends ControllerBase<Doctor, DoctorRepo, DoctorService> {
+public class DoctorController extends BaseController<Doctor, DoctorService> {
 
 	@Autowired
 	public DoctorController(DoctorService doctorService) {

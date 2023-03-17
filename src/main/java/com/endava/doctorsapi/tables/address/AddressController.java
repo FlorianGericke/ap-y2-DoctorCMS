@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.general.base.ControllerBase;
+import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/address")
-public class AddressController extends ControllerBase<Address, AddressRepo, AddressService> {
+public class AddressController extends BaseController<Address, AddressService> {
 
 	public AddressController(AddressService addressService) {
 		super(addressService);
