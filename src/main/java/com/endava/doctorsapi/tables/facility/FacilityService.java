@@ -13,24 +13,24 @@ public class FacilityService extends BaseService<Facility, FacilityRepo> {
 		super(facilityRepo);
 	}
 
-	public void postFacility(String name) {
-		repo.save(new Facility(name));
+	public Facility postFacility(String name) {
+		return repo.save(new Facility(name));
 	}
 
-	public void postFacility(Facility facility) {
-		this.postFacility(facility.getName());
+	public Facility postFacility(Facility facility) {
+		return this.postFacility(facility.getName());
 	}
 
-	public void put(Long id, String name) {
+	public Facility put(Long id, String name) {
 		Facility facility = repo.findById(id)
 				.orElseThrow(() -> {
 					throw new CmsException("id not found");
 				});
 		facility.setName(name);
-		repo.save(facility);
+		return repo.save(facility);
 	}
 
-	public void put(Long id, Facility facility) {
-		this.put(id, facility.getName());
+	public Facility Facility(Long id, Facility facility) {
+		return this.put(id, facility.getName());
 	}
 }
