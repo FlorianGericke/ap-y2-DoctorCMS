@@ -1,11 +1,13 @@
 package com.endava.doctorsapi.dto.response;
 
 
+import java.util.Set;
+
 public record AddressResponse(
 		String street,
 		String houseNumber,
-		int postCode,
 		String location,
-		FacilityResponse[] facilities
+		int postCode,
+		Set<FacilityResponse> facilities
 ) {
 }

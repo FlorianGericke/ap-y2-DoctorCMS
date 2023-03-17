@@ -1,8 +1,10 @@
 package com.endava.doctorsapi.dto.response;
 
 
+import java.util.Set;
+
 public record FacilityResponse(
 		String facilityName,
-		AddressResponse[] addresses
+		Set<AddressResponse> addresses
 ) {
 }
