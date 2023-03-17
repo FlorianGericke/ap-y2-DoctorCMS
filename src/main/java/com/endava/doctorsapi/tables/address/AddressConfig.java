@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AddressConfig {
-//	@Bean
+	@Bean
 	CommandLineRunner cmlRunner(AddressService addressService) {
 		return args -> {
 			addressService.postAddress("Bartelt","3402",64044,"Pau");
