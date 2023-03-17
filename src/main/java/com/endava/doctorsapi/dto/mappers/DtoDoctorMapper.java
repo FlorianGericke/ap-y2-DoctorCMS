@@ -10,6 +10,6 @@ import java.util.function.Function;
 public class DtoDoctorMapper implements Function<Doctor, DoctorResponse> {
 	@Override
 	public DoctorResponse apply(Doctor doctor) {
-		return new DoctorResponse(doctor.getFirstName(), doctor.getLastName());
+		return new DoctorResponse(doctor.getId(), doctor.getFirstName(), doctor.getLastName());
 	}
 }

@@ -12,6 +12,6 @@ import java.util.function.Function;
 public class DtoDepartmentMapper implements Function<Department, DepartmentResponse> {
 	@Override
 	public DepartmentResponse apply(Department department) {
-		return new DepartmentResponse(department.getName());
+		return new DepartmentResponse(department.getId(), department.getName());
 	}
 }

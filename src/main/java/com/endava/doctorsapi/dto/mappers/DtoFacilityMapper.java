@@ -15,9 +15,11 @@ public class DtoFacilityMapper implements Function<Facility, FacilityResponse> {
 	@Override
 	public FacilityResponse apply(Facility facility) {
 		return new FacilityResponse(
+				facility.getId(),
 				facility.getName(),
 				facility.getAddresses().stream()
 						.map(address -> new AddressResponse(
+								address.getId(),
 								address.getStreet(),
 								address.getHouseNumber(),
 								address.getLocation(),

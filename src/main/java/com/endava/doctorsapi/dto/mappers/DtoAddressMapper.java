@@ -15,13 +15,14 @@ import java.util.stream.Collectors;
 public class DtoAddressMapper implements Function<Address, AddressResponse> {
 	@Override
 	public AddressResponse apply(Address address) {
-		return new AddressResponse(address.getStreet(),
+		return new AddressResponse(address.getId(),
+				address.getStreet(),
 				address.getHouseNumber(),
 				address.getLocation(),
 				address.getPostCode(),
 				address.getFacilities()
 						.stream()
-						.map(facility -> new FacilityResponse(facility.getName(),null))
+						.map(facility -> new FacilityResponse(facility.getId(), facility.getName(),null))
 						.collect(Collectors.toSet()));
 	}
 }
