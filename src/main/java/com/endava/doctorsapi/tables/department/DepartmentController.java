@@ -5,6 +5,8 @@ import com.endava.doctorsapi.dto.response.DepartmentResponse;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -20,19 +22,19 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 	}
 
 	@PostMapping()
-	public void onPost(@RequestBody() Optional<Department> department) {
+	public ResponseEntity<DepartmentResponse> onPost(@RequestBody() Optional<Department> department) {
 		validate(department);
-		service.postDepartment(department.get());
+		return new ResponseEntity<>(mapper.apply(service.postDepartment(department.get())), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public void onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Department> department) {
+	public ResponseEntity<DepartmentResponse> onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Department> department) {
 		if (id == null) {
 			throw new ControllerException(this, "Invalid param id is null");
 		}
 
 		validate(department);
-		service.putDepartment(id, department.get());
+		return new ResponseEntity<>(mapper.apply(service.putDepartment(id, department.get())), HttpStatus.OK);
 	}
 
 	private void validate(Optional<Department> department) {
