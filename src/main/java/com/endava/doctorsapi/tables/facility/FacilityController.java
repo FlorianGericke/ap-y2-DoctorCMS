@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.Optional;
 
@@ -45,6 +44,12 @@ public class FacilityController extends BaseController<Facility, FacilityService
 		validate(facility);
 
 		return new ResponseEntity<>(mapper.apply(service.put(id, facility.get().getName())), HttpStatus.OK);
+	}
+
+	@PatchMapping("/{facilityId}/address/{addressId}")
+	public ResponseEntity<FacilityResponse> onPatch(@PathVariable(value = "facilityId") long facilityId,
+	                    @PathVariable(value = "addressId") long addressId){
+		return new ResponseEntity<>(mapper.apply(service.patchAddress(facilityId,addressId)),HttpStatus.OK);
 	}
 
 	private void validate(Optional<Facility> facility) {
