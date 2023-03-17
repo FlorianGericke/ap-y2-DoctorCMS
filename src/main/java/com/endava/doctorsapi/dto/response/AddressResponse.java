@@ -5,6 +5,7 @@ public record AddressResponse(
 		String street,
 		String houseNumber,
 		int postCode,
-		String location
+		String location,
+		FacilityResponse[] facilities
 ) {
 }
