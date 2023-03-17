@@ -5,6 +5,8 @@ import com.endava.doctorsapi.general.exceptions.ServiceException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class BaseService<Type extends BaseEntity, Repo extends JpaRepository<Type, Long>> {
@@ -25,18 +27,29 @@ public class BaseService<Type extends BaseEntity, Repo extends JpaRepository<Typ
 		return repo.findAll();
 	}
 
-	public void delete(long id) {
+	public Type delete(long id) {
 		if (get(id).getState().equals(EntityStates.DELETED.toString())) {
 			throw new ServiceException(this, "Cannot delete a doctor that is already in the state deleted");
 		}
+
+		Type isDeleted = repo.findById(id).get();
+
 		repo.deleteById(id);
+
+		return isDeleted;
 	}
 
-	public void deleteAllById(Iterable<? extends Long> longs) {
-		repo.deleteAllById(longs);
+	public List<Type> deleteAllById(Iterable<? extends Long> longs) {
+		List<Long> longList = new ArrayList<>();
+		longs.forEach(longList::add);
+		List<Type> re = longList.stream().map(this::get).toList();
+		repo.deleteAllById(longList);
+		return re;
 	}
 
-	public void deleteAll() {
+	public List<Type> deleteAll() {
+		List<Type> types = getAll();
 		repo.deleteAll();
+		return types;
 	}
 }
