@@ -1,36 +1,55 @@
 package com.endava.doctorsapi.tables.facility;
 
-import com.endava.doctorsapi.general.base.ServiceBase;
+import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.CmsException;
+import com.endava.doctorsapi.general.exceptions.ServiceException;
+import com.endava.doctorsapi.tables.address.Address;
+import com.endava.doctorsapi.tables.address.AddressRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FacilityService extends ServiceBase<Facility, Long, FacilityRepo> {
+public class FacilityService extends BaseService<Facility, FacilityRepo> {
+
+	private final AddressRepo addressRepo;
 
 	@Autowired
-	public FacilityService(FacilityRepo facilityRepo) {
+	public FacilityService(FacilityRepo facilityRepo, AddressRepo addressRepo) {
 		super(facilityRepo);
+		this.addressRepo = addressRepo;
 	}
 
-	public void postFacility(String name) {
-		repo.save(new Facility(name));
+	public Facility postFacility(String name) {
+		return repo.save(new Facility(name));
 	}
 
-	public void postFacility(Facility facility) {
-		this.postFacility(facility.getName());
+	public Facility postFacility(Facility facility) {
+		return this.postFacility(facility.getName());
 	}
 
-	public void put(Long id, String name) {
+	public Facility put(Long id, String name) {
 		Facility facility = repo.findById(id)
 				.orElseThrow(() -> {
 					throw new CmsException("id not found");
 				});
 		facility.setName(name);
-		repo.save(facility);
+		return repo.save(facility);
 	}
 
-	public void put(Long id, Facility facility) {
-		this.put(id, facility.getName());
+	@Transactional
+	public Facility patchAddress(long facilityId, long addressId) {
+		Facility facilityRef = repo.findById(facilityId)
+				.orElseThrow(() -> new ServiceException(HttpStatus.NOT_FOUND, this, "Facility not found"));
+		Address addressRef = addressRepo.findById(addressId)
+				.orElseThrow(() -> new ServiceException(HttpStatus.NOT_FOUND, this, "Address not found"));
+
+		facilityRef.assignAddress(addressRef);
+		return repo.save(facilityRef);
+	}
+
+	public Facility Facility(Long id, Facility facility) {
+		return this.put(id, facility.getName());
 	}
 }

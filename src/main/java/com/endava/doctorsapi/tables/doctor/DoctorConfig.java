@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DoctorConfig {
 
-//	@Bean
+	@Bean
 	CommandLineRunner cmRun(DoctorService doctorService) {
 		return args -> {
 

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FacilityConfig {
-//	@Bean
+	@Bean
 	CommandLineRunner facilityConfigRunner(FacilityService facilityService) {
 		return args -> {
 			facilityService.postFacility("Ambulatory surgical center");

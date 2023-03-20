@@ -1,35 +1,46 @@
 package com.endava.doctorsapi.tables.address;
 
-import com.endava.doctorsapi.general.base.ControllerBase;
+import com.endava.doctorsapi.dto.mappers.DtoAddressMapper;
+import com.endava.doctorsapi.dto.response.AddressResponse;
+import com.endava.doctorsapi.dto.response.FacilityResponse;
+import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/address")
-public class AddressController extends ControllerBase<Address, AddressRepo, AddressService> {
+public class AddressController extends BaseController<Address, AddressService, AddressResponse, DtoAddressMapper> {
 
-	public AddressController(AddressService addressService) {
-		super(addressService);
+	public AddressController(AddressService addressService, DtoAddressMapper addressMapper) {
+		super(addressService,addressMapper);
 	}
 
 	@PostMapping()
-	public void onPost(@RequestBody() Optional<Address> address) {
+	public ResponseEntity<AddressResponse> onPost(@RequestBody() Optional<Address> address) {
 		validate(address);
-		service.postAddress(address.get());
+		return new ResponseEntity<>(mapper.apply(service.postAddress(address.get())),HttpStatus.OK);
 	}
 
 
 	@PutMapping("/{id}")
-	public void onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Address> address) {
+	public ResponseEntity<AddressResponse> onPut(@PathVariable(value = "id") Long id, @RequestBody() Optional<Address> address) {
 		if (id == null) {
 			throw new CmsException("Invalid param id is null");
 		}
 
 		validate(address);
-		service.putAddress(id, address.get());
+		return new ResponseEntity<>(mapper.apply(service.putAddress(id, address.get())),HttpStatus.OK);
+	}
+
+	@PatchMapping("/{addressId}/facility/{facilityId}")
+	public ResponseEntity<AddressResponse> onPatch(@PathVariable(value = "addressId") long addressId,
+	                                               @PathVariable(value = "facilityId") long facilityId){
+		return new ResponseEntity<>(mapper.apply(service.patchFacility(addressId, facilityId)),HttpStatus.OK);
 	}
 
 	private void validate(Optional<Address> address) {

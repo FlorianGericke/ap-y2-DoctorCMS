@@ -21,10 +21,10 @@ paths:
             schema:
               type: object
               example:
-                street: neue
+                street: PeterStrasse
                 houseNumber: '420'
                 postCode: 14558
-                location: Feld
+                location: Berlin
       responses:
         '200':
           description: Successful response
@@ -63,15 +63,6 @@ paths:
                 houseNumber: 1B
                 postCode: 11111
                 location: Bauer
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Address
-      summary: Get Address by ID
       responses:
         '200':
           description: Successful response
@@ -122,7 +113,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/department/65:
+  /api/v1/department/32:
     put:
       tags:
         - Department
@@ -139,6 +130,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/v1/department/65:
     get:
       tags:
         - Department
@@ -194,7 +186,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/doctor/1293:
+  /api/v1/doctor/16:
     put:
       tags:
         - Doctor
@@ -221,7 +213,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/doctor/1210:
     delete:
       tags:
         - Doctor
@@ -242,7 +233,7 @@ paths:
             schema:
               type: object
               example:
-                name: TestFacility2
+                name: TestFacility123
       responses:
         '200':
           description: Successful response
@@ -266,7 +257,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/facility/177647:
+  /api/v1/facility/15:
     put:
       tags:
         - Facility
@@ -278,6 +269,27 @@ paths:
               type: object
               example:
                 name: Cooles Neues Facility
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Facility
+      summary: Get Facility by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/facility/1/address/3:
+    patch:
+      tags:
+        - Facility
+      summary: Assign to Address
+      requestBody:
+        content: {}
       responses:
         '200':
           description: Successful response

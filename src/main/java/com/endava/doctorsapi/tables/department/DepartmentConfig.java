@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DepartmentConfig {
-//    @Bean
+    @Bean
     CommandLineRunner departmentConfigRunner(DepartmentService departmentService) {
         return args -> {
             departmentService.postDepartment("name");
