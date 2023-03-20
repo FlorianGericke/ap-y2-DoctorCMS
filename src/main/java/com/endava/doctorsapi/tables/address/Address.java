@@ -30,8 +30,7 @@ public class Address extends BaseEntity {
 	private String location;
 
 
-	@JsonIgnore
-	@ManyToMany(mappedBy = "addresses", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "addresses", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Facility> facilities = new HashSet<>();
 
 	public Address(String street, String houseNumber, int postCode, String location) {
@@ -41,7 +40,8 @@ public class Address extends BaseEntity {
 		this.location = location;
 	}
 
-	public Address() {}
+	public Address() {
+	}
 
 	public void setStreet(String street) {
 		this.street = street;

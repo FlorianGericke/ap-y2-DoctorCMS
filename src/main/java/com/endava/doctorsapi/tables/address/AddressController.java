@@ -2,6 +2,7 @@ package com.endava.doctorsapi.tables.address;
 
 import com.endava.doctorsapi.dto.mappers.DtoAddressMapper;
 import com.endava.doctorsapi.dto.response.AddressResponse;
+import com.endava.doctorsapi.dto.response.FacilityResponse;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
@@ -34,6 +35,12 @@ public class AddressController extends BaseController<Address, AddressService, A
 
 		validate(address);
 		return new ResponseEntity<>(mapper.apply(service.putAddress(id, address.get())),HttpStatus.OK);
+	}
+
+	@PatchMapping("/{addressId}/facility/{facilityId}")
+	public ResponseEntity<AddressResponse> onPatch(@PathVariable(value = "addressId") long addressId,
+	                                               @PathVariable(value = "facilityId") long facilityId){
+		return new ResponseEntity<>(mapper.apply(service.patchFacility(addressId, facilityId)),HttpStatus.OK);
 	}
 
 	private void validate(Optional<Address> address) {

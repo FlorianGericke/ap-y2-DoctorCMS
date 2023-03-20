@@ -5,6 +5,7 @@ import com.endava.doctorsapi.general.exceptions.CmsException;
 import com.endava.doctorsapi.general.exceptions.ServiceException;
 import com.endava.doctorsapi.tables.address.Address;
 import com.endava.doctorsapi.tables.address.AddressRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,7 @@ public class FacilityService extends BaseService<Facility, FacilityRepo> {
 		return repo.save(facility);
 	}
 
+	@Transactional
 	public Facility patchAddress(long facilityId, long addressId) {
 		Facility facilityRef = repo.findById(facilityId)
 				.orElseThrow(() -> new ServiceException(HttpStatus.NOT_FOUND, this, "Facility not found"));
