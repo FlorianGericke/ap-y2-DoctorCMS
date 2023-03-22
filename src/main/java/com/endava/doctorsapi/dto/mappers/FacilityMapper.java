@@ -1,5 +1,6 @@
 package com.endava.doctorsapi.dto.mappers;
 
+import com.endava.doctorsapi.dto.request.AddressRequest;
 import com.endava.doctorsapi.dto.request.DepartmentRequest;
 import com.endava.doctorsapi.dto.request.DoctorRequest;
 import com.endava.doctorsapi.dto.response.FacilityResponse;
@@ -26,6 +27,14 @@ public class FacilityMapper implements DTOMapper<Facility, FacilityResponse> {
 								res.getDoctor().getId(),
 								res.getDoctor().getFirstName(),
 								res.getDoctor().getLastName()))
+						.collect(Collectors.toSet()),
+				facility.getAddresses()
+						.stream().map(res -> new AddressRequest(
+								res.getId(),
+								res.getStreet(),
+								res.getHouseNumber(),
+								res.getLocation(),
+								res.getPostCode()))
 						.collect(Collectors.toSet())
 		);
 	}

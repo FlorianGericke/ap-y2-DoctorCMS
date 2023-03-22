@@ -9,8 +9,7 @@ public record DoctorResponse(
 		long id,
 		String firstName,
 		String lastName,
-
-		Set<DepartmentRequest> departmentRequests,
+		Set<DepartmentRequest> departments,
 		Set<FacilityRequest> facilities
 ) {
 }
