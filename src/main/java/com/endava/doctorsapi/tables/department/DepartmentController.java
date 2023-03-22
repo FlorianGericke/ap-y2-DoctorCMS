@@ -37,6 +37,14 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 		return new ResponseEntity<>(mapper.map(service.putDepartment(id, department.get())), HttpStatus.OK);
 	}
 
+	@PatchMapping("/{depId}/facility/{facId}/doctor/{docId}")
+	public ResponseEntity<DepartmentResponse> onPatch(@PathVariable("depId") Optional<Long> depId,
+	                                              @PathVariable("facId") Optional<Long> facId,
+	                                              @PathVariable("docId") Optional<Long> docId) {
+
+		return new ResponseEntity<>(mapper.map(service.onPatch(docId.get(), facId.get(), depId.get())), HttpStatus.OK);
+	}
+
 	private void validate(Optional<Department> department) {
 		if (department.isEmpty()) {
 			throw new ControllerException(this, "Please provide a RequestBody withe attribute name");
