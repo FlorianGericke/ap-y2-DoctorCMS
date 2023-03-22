@@ -42,7 +42,7 @@ public class DoctorController extends BaseController<Doctor, DoctorService, Doct
 	                                              @PathVariable("facId") Optional<Long> facId,
 	                                              @PathVariable("depId") Optional<Long> depId) {
 
-		return new ResponseEntity<>(mapper.map(service.onPatch(docId.get(), facId.get(), depId.get())), HttpStatus.OK);
+		return new ResponseEntity<>(mapper.map(service.patchDoctorFacilityDepartment(docId.get(), facId.get(), depId.get())), HttpStatus.OK);
 	}
 
 	private void validate(Optional<Doctor> doctor) {

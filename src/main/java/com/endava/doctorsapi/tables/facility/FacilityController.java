@@ -52,6 +52,14 @@ public class FacilityController extends BaseController<Facility, FacilityService
 		return new ResponseEntity<>(mapper.map(service.patchAddress(facilityId,addressId)),HttpStatus.OK);
 	}
 
+	@PatchMapping("/{facId}/department/{depId}/doctor/{docId}")
+	public ResponseEntity<FacilityResponse> onPatch(@PathVariable("facId") Optional<Long> facId,
+	                                                  @PathVariable("depId") Optional<Long> depId,
+	                                                  @PathVariable("docId") Optional<Long> docId) {
+
+		return new ResponseEntity<>(mapper.map(service.patchDoctorFacilityDepartment(docId.get(), facId.get(), depId.get())), HttpStatus.OK);
+	}
+
 	private void validate(Optional<Facility> facility) {
 		if (facility.isEmpty()) {
 			throw new CmsException("Please provide a RequestBody withe attribute name");

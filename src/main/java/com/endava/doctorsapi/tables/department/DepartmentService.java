@@ -7,6 +7,7 @@ import com.endava.doctorsapi.tables.facility_department.FacilityDepartmentServic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DepartmentService extends BaseService<Department, DepartmentRepo> {
@@ -27,7 +28,8 @@ public class DepartmentService extends BaseService<Department, DepartmentRepo> {
 		return this.postDepartment(department.getName());
 	}
 
-	public Department onPatch(long docId, long facId, long depId) {
+	@Transactional
+	public Department onPatchDoctorFacilityDepartment(long docId, long facId, long depId) {
 		Department dep = get(docId);
 
 		facilityDepartmentService.onPost(facId, depId, docId);

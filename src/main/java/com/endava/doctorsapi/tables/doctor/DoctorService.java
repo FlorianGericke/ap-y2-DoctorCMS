@@ -32,8 +32,8 @@ public class DoctorService extends BaseService<Doctor, DoctorRepo> {
 		return this.putDoctor(id, doc.getFirstName(), doc.getLastName());
 	}
 
-
-	public Doctor onPatch(long docId, long facId, long depId) {
+	@Transactional
+	public Doctor patchDoctorFacilityDepartment(long docId, long facId, long depId) {
 		Doctor doc = get(docId);
 
 		facilityDepartmentService.onPost(facId, depId, docId);
