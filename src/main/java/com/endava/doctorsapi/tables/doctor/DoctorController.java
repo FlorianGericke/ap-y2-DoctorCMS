@@ -37,6 +37,14 @@ public class DoctorController extends BaseController<Doctor,DoctorService, Docto
 
 	}
 
+//	@PatchMapping("/{docID}/{facID}/{depID}")
+//	public void onPatch(@PathVariable("docID") Optional<Long> docID,
+//	                    @PathVariable("docID") Optional<Long> facID,
+//	                    @PathVariable("docID") Optional<Long> depID){
+//		service.patchWorkSpace(docID.get(), facID.get(), depID.get());
+//
+//	}
+
 	private void validate(Optional<Doctor> doctor) {
 		if (doctor.isEmpty()) {
 			throw new CmsException( "Please provide a RequestBody withe attributs firstName, lastName");
