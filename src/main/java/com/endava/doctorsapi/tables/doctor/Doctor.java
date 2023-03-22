@@ -4,6 +4,7 @@ import com.endava.doctorsapi.general.base.BaseEntity;
 import com.endava.doctorsapi.tables.department.Department;
 import com.endava.doctorsapi.tables.facility.Facility;
 import com.endava.doctorsapi.tables.facility_department.FacilityDepartment;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "doctors")
+@SecondaryTable(name = "facilities_departments")
 @SQLDelete(sql = "UPDATE doctors SET state = 'deleted', deleted_at = current_date WHERE id=?")
 @Where(clause = "state IN ('created', 'updated')")
 public class Doctor extends BaseEntity {
@@ -23,8 +25,7 @@ public class Doctor extends BaseEntity {
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
-	@OneToMany()
-	@JoinColumn
+	@OneToMany(mappedBy = "doctor")
 	private Set<FacilityDepartment> facilityDepartments;
 
 

@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.tables.department;
 
-import com.endava.doctorsapi.dto.mappers.DtoDepartmentMapper;
+import com.endava.doctorsapi.dto.mappers.DepartmentMapper;
 import com.endava.doctorsapi.dto.response.DepartmentResponse;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.ControllerException;
@@ -14,17 +14,17 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/department")
-public class DepartmentController extends BaseController<Department, DepartmentService, DepartmentResponse, DtoDepartmentMapper> {
+public class DepartmentController extends BaseController<Department, DepartmentService, DepartmentResponse, DepartmentMapper> {
 
 	@Autowired
-	public DepartmentController(DepartmentService departmentService, DtoDepartmentMapper departmentMapper) {
-		super(departmentService,departmentMapper);
+	public DepartmentController(DepartmentService departmentService, DepartmentMapper departmentMapper) {
+		super(departmentService, departmentMapper);
 	}
 
 	@PostMapping()
 	public ResponseEntity<DepartmentResponse> onPost(@RequestBody() Optional<Department> department) {
 		validate(department);
-		return new ResponseEntity<>(mapper.apply(service.postDepartment(department.get())), HttpStatus.OK);
+		return new ResponseEntity<>(mapper.map(service.postDepartment(department.get())), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
@@ -34,7 +34,7 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 		}
 
 		validate(department);
-		return new ResponseEntity<>(mapper.apply(service.putDepartment(id, department.get())), HttpStatus.OK);
+		return new ResponseEntity<>(mapper.map(service.putDepartment(id, department.get())), HttpStatus.OK);
 	}
 
 	private void validate(Optional<Department> department) {

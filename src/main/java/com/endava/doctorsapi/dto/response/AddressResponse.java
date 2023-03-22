@@ -1,5 +1,7 @@
 package com.endava.doctorsapi.dto.response;
 
+import com.endava.doctorsapi.dto.request.FacilityRequest;
+
 import java.util.Set;
 
 public record AddressResponse(
@@ -8,6 +10,6 @@ public record AddressResponse(
 		String houseNumber,
 		String location,
 		int postCode,
-		Set<FacilityResponse> facilities
+		Set<FacilityRequest> facilities
 ) {
 }
