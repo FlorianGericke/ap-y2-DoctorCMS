@@ -32,15 +32,6 @@ public class DoctorService extends BaseService<Doctor, DoctorRepo> {
 		return this.putDoctor(id, doc.getFirstName(), doc.getLastName());
 	}
 
-	@Transactional
-	public Doctor patchDoctorFacilityDepartment(long docId, long facId, long depId) {
-		Doctor doc = get(docId);
-
-		facilityDepartmentService.onPost(facId, depId, docId);
-
-		return doc;
-	}
-
 	public Doctor putDoctor(Long id, String firstName, String lastName) {
 		Doctor doc = repo.findById(id)
 				.orElseThrow(() -> {
@@ -49,5 +40,14 @@ public class DoctorService extends BaseService<Doctor, DoctorRepo> {
 		doc.setFirstName(firstName);
 		doc.setLastName(lastName);
 		return repo.save(doc);
+	}
+
+	@Transactional
+	public Doctor patchDoctorFacilityDepartment(long docId, long facId, long depId) {
+		Doctor doc = get(docId);
+
+		facilityDepartmentService.onPost(facId, depId, docId);
+
+		return doc;
 	}
 }

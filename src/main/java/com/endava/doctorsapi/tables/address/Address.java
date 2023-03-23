@@ -2,6 +2,7 @@ package com.endava.doctorsapi.tables.address;
 
 import com.endava.doctorsapi.general.base.BaseEntity;
 import com.endava.doctorsapi.tables.facility.Facility;
+import com.endava.doctorsapi.tables.patient.Patient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
@@ -32,6 +33,9 @@ public class Address extends BaseEntity {
 
 	@ManyToMany(mappedBy = "addresses", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Facility> facilities = new HashSet<>();
+
+	@OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Patient> patients;
 
 	public Address(String street, String houseNumber, int postCode, String location) {
 		this.street = street;
