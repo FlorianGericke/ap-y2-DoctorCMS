@@ -694,6 +694,245 @@
 			]
 		},
 		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Adding new Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"insuranceNumber\" : 0 , \n    \"firstName\" : \"\",\n    \"lastName\": \"\" ,\n    \"age\" : 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updating Patient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"insuranceNumber\" : \"72-835-40930\" , \n    \"firstName\" : \"Paul\",\n    \"lastName\": \"Panter\" ,\n    \"age\" : 12\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/patient/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"patient",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Patient, Address",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/patient/1/address/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"patient",
+								"1",
+								"address",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/patient/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Patients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all Patients",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Patient by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/patient/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete multiple Patient by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"ids\" : [2,3,4]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Facility",
 			"item": [
 				{
