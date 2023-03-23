@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.dto.response;
 
-import jakarta.persistence.Column;
+import com.endava.doctorsapi.dto.request.AddressRequest;
 
 public record PatientResponse(
 		long id,
@@ -8,6 +8,7 @@ public record PatientResponse(
 		String firstName,
 		String lastName,
 		int age,
-		String phone) {
-
+		String phone,
+		AddressRequest address
+) {
 }

@@ -5,7 +5,6 @@ import com.endava.doctorsapi.tables.address.Address;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name = "patients")

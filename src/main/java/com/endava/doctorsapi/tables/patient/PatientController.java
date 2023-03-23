@@ -1,6 +1,7 @@
 package com.endava.doctorsapi.tables.patient;
 
 import com.endava.doctorsapi.dto.mappers.PatientMapper;
+import com.endava.doctorsapi.dto.response.FacilityResponse;
 import com.endava.doctorsapi.dto.response.PatientResponse;
 import com.endava.doctorsapi.general.base.BaseController;
 import com.endava.doctorsapi.general.exceptions.CmsException;
@@ -36,6 +37,12 @@ public class PatientController extends BaseController<Patient, PatientService, P
 		validate(patient);
 		return new ResponseEntity<>(mapper.map(service.putPatient(id, patient.get())), HttpStatus.OK);
 
+	}
+
+	@PatchMapping("/{facilityId}/address/{addressId}")
+	public ResponseEntity<PatientResponse> onPatch(@PathVariable(value = "facilityId") long facilityId,
+	                                               @PathVariable(value = "addressId") long addressId) {
+		return new ResponseEntity<>(mapper.map(service.patchAddress(facilityId, addressId)), HttpStatus.OK);
 	}
 
 	private void validate(Optional<Patient> patient) {
