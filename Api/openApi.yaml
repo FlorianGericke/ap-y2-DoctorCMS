@@ -68,6 +68,18 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/v1/address/3/facility/1:
+    patch:
+      tags:
+        - Address
+      summary: Assign Address, Facility
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/v1/address/29:
     delete:
       tags:
@@ -130,6 +142,18 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/v1/department/1/facility/1/doctor/1:
+    patch:
+      tags:
+        - Department
+      summary: Assign Department, Facility, Doctor
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/v1/department/65:
     get:
       tags:
@@ -186,7 +210,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/doctor/16:
+  /api/v1/doctor/1:
     put:
       tags:
         - Doctor
@@ -197,7 +221,7 @@ paths:
             schema:
               type: object
               example:
-                firstName: Peter
+                firstName: Florian
                 lastName: Pahn
       responses:
         '200':
@@ -213,6 +237,19 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/v1/doctor/3/facility/2/department/3:
+    patch:
+      tags:
+        - Doctor
+      summary: Assign Department, Facility, Department
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/doctor/16:
     delete:
       tags:
         - Doctor
@@ -274,22 +311,35 @@ paths:
           description: Successful response
           content:
             application/json: {}
-    get:
+  /api/v1/facility/1/address/2:
+    patch:
       tags:
         - Facility
-      summary: Get Facility by ID
+      summary: Assign Facility, Address
+      requestBody:
+        content: {}
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/v1/facility/1/address/3:
+  /api/v1/facility/1/department/2/doctor/3:
     patch:
       tags:
         - Facility
-      summary: Assign to Address
+      summary: Assign Facility, Department Doctor
       requestBody:
         content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/facility/1:
+    get:
+      tags:
+        - Facility
+      summary: Get Facility by ID
       responses:
         '200':
           description: Successful response

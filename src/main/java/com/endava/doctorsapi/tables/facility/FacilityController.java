@@ -1,6 +1,6 @@
 package com.endava.doctorsapi.tables.facility;
 
-import com.endava.doctorsapi.dto.mappers.DtoFacilityMapper;
+import com.endava.doctorsapi.dto.mappers.FacilityMapper;
 import com.endava.doctorsapi.dto.response.FacilityResponse;
 import com.endava.doctorsapi.general.EntityStates;
 import com.endava.doctorsapi.general.base.BaseController;
@@ -14,10 +14,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/facility")
-public class FacilityController extends BaseController<Facility, FacilityService, FacilityResponse, DtoFacilityMapper> {
+public class FacilityController extends BaseController<Facility, FacilityService, FacilityResponse, FacilityMapper> {
 
 	@Autowired
-	public FacilityController(FacilityService facilityService, DtoFacilityMapper mapper) {
+	public FacilityController(FacilityService facilityService, FacilityMapper mapper) {
 		super(facilityService, mapper);
 	}
 
@@ -26,7 +26,7 @@ public class FacilityController extends BaseController<Facility, FacilityService
 
 		validate(facility);
 
-		return new ResponseEntity<>(mapper.apply(service.postFacility(facility.get())), HttpStatus.OK);
+		return new ResponseEntity<>(mapper.map(service.postFacility(facility.get())), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
@@ -43,13 +43,21 @@ public class FacilityController extends BaseController<Facility, FacilityService
 
 		validate(facility);
 
-		return new ResponseEntity<>(mapper.apply(service.put(id, facility.get().getName())), HttpStatus.OK);
+		return new ResponseEntity<>(mapper.map(service.put(id, facility.get().getName())), HttpStatus.OK);
 	}
 
 	@PatchMapping("/{facilityId}/address/{addressId}")
 	public ResponseEntity<FacilityResponse> onPatch(@PathVariable(value = "facilityId") long facilityId,
 	                    @PathVariable(value = "addressId") long addressId){
-		return new ResponseEntity<>(mapper.apply(service.patchAddress(facilityId,addressId)),HttpStatus.OK);
+		return new ResponseEntity<>(mapper.map(service.patchAddress(facilityId,addressId)),HttpStatus.OK);
+	}
+
+	@PatchMapping("/{facId}/department/{depId}/doctor/{docId}")
+	public ResponseEntity<FacilityResponse> onPatch(@PathVariable("facId") Optional<Long> facId,
+	                                                  @PathVariable("depId") Optional<Long> depId,
+	                                                  @PathVariable("docId") Optional<Long> docId) {
+
+		return new ResponseEntity<>(mapper.map(service.patchDoctorFacilityDepartment(docId.get(), facId.get(), depId.get())), HttpStatus.OK);
 	}
 
 	private void validate(Optional<Facility> facility) {

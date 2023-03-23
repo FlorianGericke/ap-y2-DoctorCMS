@@ -1,9 +1,12 @@
 package com.endava.doctorsapi.tables.department;
 
 import com.endava.doctorsapi.general.base.BaseEntity;
+import com.endava.doctorsapi.tables.facility_department.FacilityDepartment;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "departments")
@@ -13,6 +16,9 @@ public class Department extends BaseEntity {
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
+	@OneToMany(mappedBy = "department")
+	private Set<FacilityDepartment> facilityDepartments;
 
 
 	public Department(String name) {
@@ -30,6 +36,13 @@ public class Department extends BaseEntity {
 		this.name = name;
 	}
 
+	public Set<FacilityDepartment> getFacilityDepartments() {
+		return facilityDepartments;
+	}
+
+	public void setFacilityDepartments(Set<FacilityDepartment> facilityDepartments) {
+		this.facilityDepartments = facilityDepartments;
+	}
 
 	@Override
 	public String toString() {

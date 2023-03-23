@@ -71,6 +71,30 @@
 					"response": []
 				},
 				{
+					"name": "Assign Address, Facility",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/address/3/facility/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"address",
+								"3",
+								"facility",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get Address by ID",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -285,6 +309,32 @@
 					"response": []
 				},
 				{
+					"name": "Assign Department, Facility, Doctor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/department/1/facility/1/doctor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"department",
+								"1",
+								"facility",
+								"1",
+								"doctor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get Department by ID",
 					"request": {
 						"method": "GET",
@@ -442,7 +492,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\":\"Peter\",\n    \"lastName\":\"Pahn\"\n}",
+							"raw": "{\n    \"firstName\":\"Florian\",\n    \"lastName\":\"Pahn\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -450,7 +500,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/doctor/16",
+							"raw": "http://localhost:8080/api/v1/doctor/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -460,7 +510,33 @@
 								"api",
 								"v1",
 								"doctor",
-								"16"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Department, Facility, Department",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/doctor/3/facility/2/department/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"doctor",
+								"3",
+								"facility",
+								"2",
+								"department",
+								"3"
 							]
 						}
 					},
@@ -484,7 +560,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/doctor/16",
+							"raw": "http://localhost:8080/api/v1/doctor/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -494,7 +570,7 @@
 								"api",
 								"v1",
 								"doctor",
-								"16"
+								"1"
 							]
 						}
 					},
@@ -682,12 +758,12 @@
 					"response": []
 				},
 				{
-					"name": "Assign to Address",
+					"name": "Assign Facility, Address",
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/facility/1/address/3",
+							"raw": "http://localhost:8080/api/v1/facility/1/address/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -699,6 +775,32 @@
 								"facility",
 								"1",
 								"address",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Facility, Department Doctor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/facility/1/department/2/doctor/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"facility",
+								"1",
+								"department",
+								"2",
+								"doctor",
 								"3"
 							]
 						}
@@ -711,7 +813,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/facility/15",
+							"raw": "http://localhost:8080/api/v1/facility/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -721,7 +823,7 @@
 								"api",
 								"v1",
 								"facility",
-								"15"
+								"1"
 							]
 						}
 					},
