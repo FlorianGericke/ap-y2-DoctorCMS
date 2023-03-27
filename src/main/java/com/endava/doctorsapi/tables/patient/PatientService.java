@@ -1,10 +1,10 @@
 package com.endava.doctorsapi.tables.patient;
 
+import com.endava.doctorsapi.dto.request.PatientRequest;
 import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.ServiceException;
 import com.endava.doctorsapi.tables.address.Address;
 import com.endava.doctorsapi.tables.address.AddressRepo;
-import com.endava.doctorsapi.tables.facility.Facility;
 import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,16 +19,22 @@ public class PatientService extends BaseService<Patient, PatientRepo> {
 		this.addressRepo = addressRepo;
 	}
 
-	public Patient postPatient(Patient patient) {
-		return this.postPatient(patient.getInsuranceNumber(), patient.getFirstName(), patient.getLastName(), patient.getAge());
+	public Patient postPatient(PatientRequest patientRequest) {
+		return this.postPatient(patientRequest.insuranceNumber(),
+				patientRequest.firstName(),
+				patientRequest.lastName(),
+				patientRequest.age());
 	}
 
 	public Patient postPatient(String insuranceNumber, String firstName, String lastName, int age) {
 		return repo.save(new Patient(insuranceNumber, firstName, lastName, age));
 	}
 
-	public Patient putPatient(Long id, Patient patient) {
-		return this.putPatient(id, patient.getInsuranceNumber(), patient.getFirstName(), patient.getLastName(), patient.getAge());
+	public Patient putPatient(Long id, PatientRequest patientRequest) {
+		return this.putPatient(id, patientRequest.insuranceNumber(),
+				patientRequest.firstName(),
+				patientRequest.lastName(),
+				patientRequest.age());
 	}
 
 	public Patient putPatient(Long id, String insuranceNumber, String firstName, String lastName, int age) {

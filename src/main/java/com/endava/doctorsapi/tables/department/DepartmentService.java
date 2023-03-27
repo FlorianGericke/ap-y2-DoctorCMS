@@ -1,6 +1,7 @@
 package com.endava.doctorsapi.tables.department;
 
 
+import com.endava.doctorsapi.dto.request.DepartmentRequest;
 import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import com.endava.doctorsapi.tables.facility_department.FacilityDepartmentService;
@@ -24,8 +25,8 @@ public class DepartmentService extends BaseService<Department, DepartmentRepo> {
 		return repo.save(new Department(name));
 	}
 
-	public Department postDepartment(Department department) {
-		return this.postDepartment(department.getName());
+	public Department postDepartment(DepartmentRequest departmentRequest) {
+		return this.postDepartment(departmentRequest.departmentName());
 	}
 
 	@Transactional
@@ -47,7 +48,7 @@ public class DepartmentService extends BaseService<Department, DepartmentRepo> {
 		return department;
 	}
 
-	public Department putDepartment(Long id, Department department) {
-		return this.putDepartment(id, department.getName());
+	public Department putDepartment(Long id, DepartmentRequest departmentRequest) {
+		return this.putDepartment(id, departmentRequest.departmentName());
 	}
 }

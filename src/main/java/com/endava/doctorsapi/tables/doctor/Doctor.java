@@ -1,16 +1,11 @@
 package com.endava.doctorsapi.tables.doctor;
 
 import com.endava.doctorsapi.general.base.BaseEntity;
-import com.endava.doctorsapi.tables.department.Department;
-import com.endava.doctorsapi.tables.facility.Facility;
 import com.endava.doctorsapi.tables.facility_department.FacilityDepartment;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.print.Doc;
-import java.util.List;
 import java.util.Set;
 
 @Entity

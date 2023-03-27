@@ -1,5 +1,6 @@
 package com.endava.doctorsapi.tables.facility;
 
+import com.endava.doctorsapi.dto.request.FacilityRequest;
 import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.CmsException;
 import com.endava.doctorsapi.general.exceptions.ServiceException;
@@ -28,8 +29,12 @@ public class FacilityService extends BaseService<Facility, FacilityRepo> {
 		return repo.save(new Facility(name));
 	}
 
-	public Facility postFacility(Facility facility) {
-		return this.postFacility(facility.getName());
+	public Facility postFacility(FacilityRequest facilityRequest) {
+		return this.postFacility(facilityRequest.facilityName());
+	}
+
+	public Facility put(Long id, FacilityRequest facilityRequest) {
+		return this.put(id, facilityRequest.facilityName());
 	}
 
 	public Facility put(Long id, String name) {

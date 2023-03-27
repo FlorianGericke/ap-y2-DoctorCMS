@@ -14,7 +14,6 @@ public class PatientMapper implements DTOMapper<Patient, PatientResponse> {
 
 		if (patient.getAddress() != null) {
 			addressRequest = new AddressRequest(
-					patient.getAddress().getId(),
 					patient.getAddress().getStreet(),
 					patient.getAddress().getHouseNumber(),
 					patient.getAddress().getLocation(),

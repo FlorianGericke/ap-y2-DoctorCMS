@@ -7,6 +7,8 @@ import com.endava.doctorsapi.dto.response.FacilityResponse;
 import com.endava.doctorsapi.tables.facility.Facility;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,22 +17,19 @@ public class FacilityMapper implements DTOMapper<Facility, FacilityResponse> {
 		return new FacilityResponse(
 				facility.getId(),
 				facility.getName(),
-				facility.getFacilityDepartments()
+				Optional.ofNullable(facility.getFacilityDepartments()).orElse(Collections.emptySet())
 						.stream()
 						.map(res -> new DepartmentRequest(
-								res.getDepartment().getId(),
 								res.getDepartment().getName()))
 						.collect(Collectors.toSet()),
-				facility.getFacilityDepartments()
+				Optional.ofNullable(facility.getFacilityDepartments()).orElse(Collections.emptySet())
 						.stream()
 						.map(res -> new DoctorRequest(
-								res.getDoctor().getId(),
 								res.getDoctor().getFirstName(),
 								res.getDoctor().getLastName()))
 						.collect(Collectors.toSet()),
-				facility.getAddresses()
+				Optional.ofNullable(facility.getAddresses()).orElse(Collections.emptySet())
 						.stream().map(res -> new AddressRequest(
-								res.getId(),
 								res.getStreet(),
 								res.getHouseNumber(),
 								res.getLocation(),
