@@ -1,9 +1,8 @@
 package com.endava.doctorsapi.tables.address;
 
+import com.endava.doctorsapi.dto.request.AddressRequest;
 import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.ServiceException;
-import com.endava.doctorsapi.tables.facility.Facility;
-import com.endava.doctorsapi.tables.facility.FacilityRepo;
 import com.endava.doctorsapi.tables.facility.FacilityService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +21,24 @@ public class AddressService extends BaseService<Address, AddressRepo> {
 	}
 
 	public Address postAddress(String street, String houseNumber, int postCode, String location) {
-		 return postAddress(new Address(street, houseNumber, postCode, location));
+		return repo.save(new Address(street, houseNumber, postCode, location));
 	}
 
-	public  Address postAddress(Address address) {
-		return repo.save(address);
+	public Address postAddress(AddressRequest addressRequest) {
+		return postAddress(addressRequest.street(),
+				addressRequest.houseNumber(),
+				addressRequest.postCode(),
+				addressRequest.location());
 	}
 
-	public  Address putAddress(Long id, Address address) {
-		return putAddress(id, address.getStreet(), address.getHouseNumber(), address.getPostCode(), address.getLocation());
+	public Address putAddress(Long id, AddressRequest addressRequest) {
+		return putAddress(id, addressRequest.street(),
+				addressRequest.houseNumber(),
+				addressRequest.postCode(),
+				addressRequest.location());
 	}
 
-	public  Address putAddress(Long id, String street, String houseNumber, int postCode, String location) {
+	public Address putAddress(Long id, String street, String houseNumber, int postCode, String location) {
 		Address addr = repo.findById(id)
 				.orElseThrow(() -> {
 					throw new ServiceException(this, "id not found");
@@ -48,9 +53,8 @@ public class AddressService extends BaseService<Address, AddressRepo> {
 
 	@Transactional
 	public Address patchFacility(long addressId, long facilityId) {
-		facilityService.patchAddress(facilityId,addressId);
-		Address re = repo.findById(addressId)
+		facilityService.patchAddress(facilityId, addressId);
+		return repo.findById(addressId)
 				.orElseThrow(() -> new ServiceException(HttpStatus.NOT_FOUND, this, "Address not found"));
-		return re;
 	}
 }

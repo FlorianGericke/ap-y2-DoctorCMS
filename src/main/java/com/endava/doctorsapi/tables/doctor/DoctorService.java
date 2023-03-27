@@ -1,5 +1,6 @@
 package com.endava.doctorsapi.tables.doctor;
 
+import com.endava.doctorsapi.dto.request.DoctorRequest;
 import com.endava.doctorsapi.general.base.BaseService;
 import com.endava.doctorsapi.general.exceptions.ServiceException;
 import com.endava.doctorsapi.tables.facility_department.FacilityDepartmentService;
@@ -20,16 +21,16 @@ public class DoctorService extends BaseService<Doctor, DoctorRepo> {
 		this.facilityDepartmentService = facilityDepartmentService;
 	}
 
-	public Doctor postDoctor(Doctor doctor) {
-		return this.postDoctor(doctor.getFirstName(), doctor.getLastName());
+	public Doctor postDoctor(DoctorRequest doctorRequest) {
+		return this.postDoctor(doctorRequest.firstName(), doctorRequest.lastName());
 	}
 
 	public Doctor postDoctor(String firstName, String lastName) {
 		return repo.save(new Doctor(firstName, lastName));
 	}
 
-	public Doctor putDoctor(Long id, Doctor doc) {
-		return this.putDoctor(id, doc.getFirstName(), doc.getLastName());
+	public Doctor putDoctor(Long id, DoctorRequest doctorRequest) {
+		return this.putDoctor(id, doctorRequest.firstName(), doctorRequest.lastName());
 	}
 
 	public Doctor putDoctor(Long id, String firstName, String lastName) {

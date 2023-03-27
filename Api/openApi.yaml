@@ -8,6 +8,7 @@ tags:
   - name: Address
   - name: Department
   - name: Doctor
+  - name: Patient
   - name: Facility
 paths:
   /api/v1/address:
@@ -254,6 +255,95 @@ paths:
       tags:
         - Doctor
       summary: Delete Doctor by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/patient:
+    post:
+      tags:
+        - Patient
+      summary: Adding new Patient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                insuranceNumber: 0
+                firstName: ''
+                lastName: ''
+                age: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Patient
+      summary: Get all Patients
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Patient
+      summary: Delete multiple Patient by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/patient/3:
+    put:
+      tags:
+        - Patient
+      summary: Updating Patient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                insuranceNumber: 72-835-40930
+                firstName: Paul
+                lastName: Panter
+                age: 12
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/patient/1/address/2:
+    patch:
+      tags:
+        - Patient
+      summary: Assign Patient, Address
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/patient/1:
+    get:
+      tags:
+        - Patient
+      summary: Get Patient by ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Patient
+      summary: Delete Patient by ID
       responses:
         '200':
           description: Successful response

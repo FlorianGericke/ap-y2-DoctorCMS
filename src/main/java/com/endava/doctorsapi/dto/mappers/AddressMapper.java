@@ -5,6 +5,8 @@ import com.endava.doctorsapi.dto.response.AddressResponse;
 import com.endava.doctorsapi.tables.address.Address;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,11 +18,10 @@ public class AddressMapper implements DTOMapper<Address, AddressResponse> {
 				address.getHouseNumber(),
 				address.getLocation(),
 				address.getPostCode(),
-				address.getFacilities()
+				Optional.ofNullable(address.getFacilities()).orElse(Collections.emptySet())
 						.stream()
 						.map(res
 							-> new FacilityRequest(
-								res.getId(),
 								res.getName()
 						))
 						.collect(Collectors.toSet())

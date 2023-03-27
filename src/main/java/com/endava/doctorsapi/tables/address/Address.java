@@ -3,7 +3,6 @@ package com.endava.doctorsapi.tables.address;
 import com.endava.doctorsapi.general.base.BaseEntity;
 import com.endava.doctorsapi.tables.facility.Facility;
 import com.endava.doctorsapi.tables.patient.Patient;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;

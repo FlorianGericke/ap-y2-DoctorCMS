@@ -6,6 +6,8 @@ import com.endava.doctorsapi.dto.response.DoctorResponse;
 import com.endava.doctorsapi.tables.doctor.Doctor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,16 +17,14 @@ public class DoctorMapper implements DTOMapper<Doctor, DoctorResponse> {
 				doctor.getId(),
 				doctor.getFirstName(),
 				doctor.getLastName(),
-				doctor.getFacilityDepartments()
+				Optional.ofNullable(doctor.getFacilityDepartments()).orElse(Collections.emptySet())
 						.stream()
 						.map(res -> new DepartmentRequest(
-								res.getDepartment().getId(),
 								res.getDepartment().getName()))
 						.collect(Collectors.toSet()),
-				doctor.getFacilityDepartments()
+				Optional.ofNullable(doctor.getFacilityDepartments()).orElse(Collections.emptySet())
 						.stream()
 						.map(res -> new FacilityRequest(
-								res.getFacility().getId(),
 								res.getFacility().getName()))
 						.collect(Collectors.toSet())
 		);
